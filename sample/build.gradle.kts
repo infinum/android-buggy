@@ -45,16 +45,5 @@ android {
 }
 
 dependencies {
-
-    // TODO - replace with your module names accordingly
-    // Comment this out for testing local deploy
-    implementation(project(":libModule1"))
-    implementation(project(":libModule2"))
-
-    // TODO - replace with your module packages accordingly
-    // Uncomment this for testing local deploy
-    //    implementation(packages.android-libname.libModule1)
-    //    implementation(packages.android-libname.libModule2)
-
     implementation(libs.androidx.appcompat)
 }

@@ -60,11 +60,15 @@ afterEvaluate {
                         }
                     }
                     developers {
-                        // TODO - update with correct developer id
                         developer {
-                            id = 'malicombo'
-                            name = 'Mali Čombo'
-                            email = 'mali.combo@infinum.com'
+                            id = 'karloceh'
+                            name = 'Karlo Čeh'
+                            email = 'karlo.ceh@infinum.com'
+                        }
+                        developer {
+                            id = 'antunflas'
+                            name = 'Antun Flaš'
+                            email = 'antun.flas@infinum.com'
                         }
                     }
                     scm {
