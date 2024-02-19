@@ -2,13 +2,13 @@
 // Maven central / CI build badges / links (Github pages, wiki, etc.) //
 
 ### <img align="left" src="logo.svg" width="48">
-# // Library name //
+# Android Buggy
 
 // Library logo (left wrap with title) //
 
 // OPTIONAL: A single image/screenshot/GIF descriptive of the main library function. You can stitch multiple images so they fit better horizontally if there are more things to show. //
 
-// Introduce the library with max 3-4 paragraphs describing what the library is and what is it used for. Try to use bulletpoints to highlight main features of the lib. //
+Android library for collecting and exporting the application logs and debug data.
 
 // OPTIONAL: If there are any additional modules/plugins, list and describe them here //
 
