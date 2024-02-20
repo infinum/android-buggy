@@ -297,6 +297,13 @@ obj/
 .idea/shelf/
 .idea/workspace.xml
 .idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+.idea/kotlinc.xml
+.idea/deploymentTargetDropDown.xml
+# Android Studio 3 in .gitignore file.
 .idea/.name
 .idea/compiler.xml
 .idea/copyright/profiles_settings.xml
