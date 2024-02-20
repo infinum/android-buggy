@@ -2,10 +2,10 @@ package com.infinum.buggy.timber.file
 
 import com.infinum.buggy.timber.file.FileDefaults.DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES
 import com.infinum.buggy.timber.formatter.BuggyLogFormatter
+import java.io.BufferedWriter
 import java.io.File
 import java.util.concurrent.Executors
 import timber.log.Timber
-import java.io.BufferedWriter
 
 class LimitFileTimberTree(
     private val maxIndividualFileSizeBytes: Long = DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES,

@@ -18,7 +18,7 @@ class BuggyLimitedFileFactory(
     private val maxTotalFileSizeBytes: Long = DEFAULT_MAX_AGGREGATED_FILES_CAPACITY_BYTES,
     private val maxIndividualFileSizeBytes: Long = DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES,
     directoryName: String = DEFAULT_DIRECTORY_NAME,
-    val logFileNameFactory: () -> String = ::dateTimeFileName
+    val logFileNameFactory: () -> String = ::dateTimeFileName,
 ) {
     private val filesDir = File(context.filesDir, directoryName)
 
@@ -30,11 +30,9 @@ class BuggyLimitedFileFactory(
 
     @Throws(RuntimeException::class)
     fun createFile(): File {
-
         if (totalLogSize() >= maxTotalFileSizeBytes) {
             freeUpTheSpace(maxIndividualFileSizeBytes)
         }
-
 
         val fileName = logFileNameFactory()
         val path = File(filesDir, fileName)
@@ -47,10 +45,8 @@ class BuggyLimitedFileFactory(
     private fun freeUpTheSpace(requestedSize: Long) {
         files.sortedBy { it.lastModified() }.forEach { file ->
             val currentTotalSize = totalLogSize()
-            if (currentTotalSize > (maxIndividualFileSizeBytes - requestedSize)) {
+            if (currentTotalSize > (maxTotalFileSizeBytes - requestedSize)) {
                 files.find { it == file }?.delete()
-            } else {
-                return@forEach
             }
         }
     }
