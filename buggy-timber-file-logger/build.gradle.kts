@@ -1,6 +1,6 @@
 plugins {
-    id("java-library")
-    id("kotlin")
+    id("com.android.library")
+    kotlin("android")
 }
 
 apply {
@@ -13,10 +13,22 @@ apply {
 val releaseConfig: Map<String, Any> by project
 val sonatype: Map<String, Any> by project
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+android{
+    namespace = "com.infinum.buggy"
+
+    compileSdk = 33
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    // todo recheck config
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
 }
+
 
 extra["mavenPublishProperties"] = mapOf(
     "group" to releaseConfig["group"],
