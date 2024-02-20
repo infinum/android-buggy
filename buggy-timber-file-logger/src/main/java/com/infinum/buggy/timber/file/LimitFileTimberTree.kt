@@ -5,10 +5,11 @@ import com.infinum.buggy.timber.formatter.BuggyLogFormatter
 import java.io.File
 import java.util.concurrent.Executors
 import timber.log.Timber
+import java.io.BufferedWriter
 
 class LimitFileTimberTree(
     private val maxIndividualFileSizeBytes: Long = DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES,
-    private val appMetadata: String? = null,
+    private val onFileOpened: (BufferedWriter) -> Unit = {},
     private val fileFactory: () -> File,
 ) : Timber.Tree() {
 
@@ -28,7 +29,7 @@ class LimitFileTimberTree(
     private fun createNewFile(): File = fileFactory()
 
     private fun createNewWriter(): TreeWriter =
-        TreeWriter(createNewFile(), BuggyLogFormatter(), appMetadata)
+        TreeWriter(createNewFile(), BuggyLogFormatter(), onFileOpened)
 
     private companion object {
         private val EXECUTOR = Executors.newSingleThreadExecutor {
