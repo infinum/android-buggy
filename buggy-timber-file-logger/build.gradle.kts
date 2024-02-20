@@ -12,20 +12,37 @@ apply {
 
 val releaseConfig: Map<String, Any> by project
 val sonatype: Map<String, Any> by project
+val buildConfig: Map<String, Any> by project
 
-android{
-    namespace = "com.infinum.buggy"
+android {
+    compileSdk = buildConfig["compileSdk"] as Int
 
-    compileSdk = 33
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+    defaultConfig {
+        minSdk = buildConfig["minSdk"] as Int
     }
 
-    // todo recheck config
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+    buildTypes {
+        debug {
+            isMinifyEnabled = false
+        }
+        release {
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+
+    namespace = "com.infinum.buggy"
+
+    kotlin {
+        jvmToolchain(8)
+    }
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(8))
+        }
     }
 }
 

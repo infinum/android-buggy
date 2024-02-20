@@ -20,7 +20,7 @@ android {
         applicationId = "com.infinum.buggy.sample"
         minSdk = buildConfig["minSdk"] as Int
         targetSdk = buildConfig["targetSdk"] as Int
-        versionCode = 1
+        versionCode = releaseConfig["versionCode"] as Int
         versionName = releaseConfig["version"] as String
     }
 
