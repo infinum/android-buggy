@@ -8,7 +8,7 @@ import java.util.Locale
 
 private val DATETIME_FORMAT = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ", Locale.UK)
 
-class BuggyLogFormatter : LogFormatter {
+internal class BuggyLogFormatter : LogFormatter {
 
     override fun format(priority: Int, tag: String?, message: String, t: Throwable?): String {
         val errorString = if (t != null) {
