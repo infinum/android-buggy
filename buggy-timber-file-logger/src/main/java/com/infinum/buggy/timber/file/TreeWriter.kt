@@ -6,11 +6,10 @@ import java.io.Closeable
 import java.io.File
 import java.nio.charset.StandardCharsets
 
-
 class TreeWriter(
     private val file: File,
     private val formatter: LogFormatter,
-    private val appMetadata: String? = null
+    private val appMetadata: String? = null,
 ) : Closeable {
 
     private val outputStream: CountingOutputStream by lazy {
@@ -19,7 +18,7 @@ class TreeWriter(
                 parentFile?.mkdirs()
                 createNewFile()
             }.outputStream().buffered(),
-            file.length()
+            file.length(),
         )
     }
 

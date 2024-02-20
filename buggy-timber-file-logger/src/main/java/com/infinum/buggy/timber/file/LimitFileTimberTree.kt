@@ -1,15 +1,15 @@
 package com.infinum.buggy.timber.file
 
 import com.infinum.buggy.timber.formatter.BuggyLogFormatter
-import timber.log.Timber
 import java.io.File
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicInteger
+import timber.log.Timber
 
 class LimitFileTimberTree(
     private val maxFileSizeBytes: Long,
     private val appMetadata: String? = null,
-    private val fileFactory: (Int) -> File
+    private val fileFactory: (Int) -> File,
 ) : Timber.Tree() {
 
     private val currentIndex = AtomicInteger()

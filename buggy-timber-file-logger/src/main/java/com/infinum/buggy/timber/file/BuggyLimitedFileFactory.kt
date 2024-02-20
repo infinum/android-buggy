@@ -7,7 +7,7 @@ import java.util.UUID
 
 class BuggyLimitedFileFactory(
     private val context: Context,
-    private val maxNumberOfFiles: Int = 5
+    private val maxNumberOfFiles: Int = 5,
 ) {
     private val filesDir = context.filesDir
     private val fileNames = mutableListOf<String>()
@@ -29,7 +29,6 @@ class BuggyLimitedFileFactory(
     }
 
     private fun generateFileName(): String = UUID.randomUUID().toString()
-
 
     private fun removeOldestFile() {
         val oldestFile = fileNames.minByOrNull { File(filesDir, it).lastModified() }

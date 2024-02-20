@@ -22,7 +22,7 @@ internal class BuggyLogFormatter : LogFormatter {
             DATETIME_FORMAT.format(Date()),
             tag,
             message,
-            errorString
+            errorString,
         ).joinToString(separator = " ")
     }
 }
