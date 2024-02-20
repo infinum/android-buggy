@@ -36,13 +36,12 @@ android {
 
     namespace = "com.infinum.buggy"
 
-    kotlin {
-        jvmToolchain(8)
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    java {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(8))
-        }
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
 
