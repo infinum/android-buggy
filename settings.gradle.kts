@@ -1,6 +1,6 @@
-include(":libModule1")
-include(":libModule2")
+rootProject.name = "Android Buggy"
+
 include(":sample")
 
-rootProject.name = "Android Library Template"
+include(":buggy")
 include(":buggy-timber-file-logger")

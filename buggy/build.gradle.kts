@@ -22,23 +22,17 @@ java {
 extra["mavenPublishProperties"] = mapOf(
     "group" to releaseConfig["group"],
     "version" to releaseConfig["version"],
-    // TODO - <YOUR-LIBRARY-ARTIFACTID>
-    "artifactId" to "libModule1",
+    "artifactId" to "buggy",
     "repository" to mapOf(
         "url" to sonatype["url"],
         "username" to sonatype["username"],
         "password" to sonatype["password"]
     ),
-    // TODO - <YOUR-AWESOME-LIBRARY-NAME>
-    "name" to "ExampleLib LibModule1",
-    // TODO - <YOUR-AWESOME-LIBRARY-DESCRIPTION>
-    "description" to "ExampleLib LibModule1 module",
-    // TODO - https://github.com/infinum/<YOUR-AWESOME-LIBRARY>
-    "url" to "https://github.com/infinum/android-libname",
+    "name" to "Buggy",
+    "description" to "Android library for collecting and exporting the application logs and debug data",
+    "url" to "https://github.com/infinum/android-buggy",
     "scm" to mapOf(
-        // TODO - https://github.com/infinum/<YOUR-AWESOME-LIBRARY>.git
-        "connection" to "https://github.com/infinum/android-libname.git",
-        // TODO - https://github.com/infinum/<YOUR-AWESOME-LIBRARY>
-        "url" to "https://github.com/infinum/android-libname"
+        "connection" to "https://github.com/infinum/android-buggy.git",
+        "url" to "https://github.com/infinum/android-buggy"
     )
 )

@@ -13,13 +13,11 @@ val releaseConfig: Map<String, Any> by project
 val sonatype: Map<String, Any> by project
 
 android {
-    // TODO - com.infinum.<YOUR-AWESOME-LIBRARY-NAME>.sample
-    namespace = "com.infinum.libname.sample"
+    namespace = "com.infinum.buggy.sample"
     compileSdk = buildConfig["compileSdk"] as Int
 
     defaultConfig {
-        // TODO - com.infinum.<YOUR-AWESOME-LIBRARY-NAME>.sample
-        applicationId = "com.infinum.libname.sample"
+        applicationId = "com.infinum.buggy.sample"
         minSdk = buildConfig["minSdk"] as Int
         targetSdk = buildConfig["targetSdk"] as Int
         versionCode = 1
@@ -45,16 +43,5 @@ android {
 }
 
 dependencies {
-
-    // TODO - replace with your module names accordingly
-    // Comment this out for testing local deploy
-    implementation(project(":libModule1"))
-    implementation(project(":libModule2"))
-
-    // TODO - replace with your module packages accordingly
-    // Uncomment this for testing local deploy
-    //    implementation(packages.android-libname.libModule1)
-    //    implementation(packages.android-libname.libModule2)
-
     implementation(libs.androidx.appcompat)
 }
