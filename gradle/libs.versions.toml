@@ -5,6 +5,15 @@ detekt = "1.23.1"
 dokka = "1.9.10"
 kotlin = "1.9.22"
 org-jetbrains-kotlin-jvm = "1.9.22"
+turbine = "0.8.0"
+junit = "5.10.1"
+
+[bundles]
+test = [
+    "junit-jupiter",
+    "kotlin-test",
+    "turbine"
+]
 
 [plugins]
 detekt-plugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
@@ -17,3 +26,6 @@ dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref
 kotlin-core = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 tools-gradle = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
