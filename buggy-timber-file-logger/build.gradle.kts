@@ -1,6 +1,6 @@
 plugins {
-    id("java-library")
-    id("kotlin")
+    id("com.android.library")
+    kotlin("android")
 }
 
 apply {
@@ -12,11 +12,39 @@ apply {
 
 val releaseConfig: Map<String, Any> by project
 val sonatype: Map<String, Any> by project
+val buildConfig: Map<String, Any> by project
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+android {
+    compileSdk = buildConfig["compileSdk"] as Int
+
+    defaultConfig {
+        minSdk = buildConfig["minSdk"] as Int
+    }
+
+    buildTypes {
+        debug {
+            isMinifyEnabled = false
+        }
+        release {
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+
+    namespace = "com.infinum.buggy.timber"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
+
 
 extra["mavenPublishProperties"] = mapOf(
     "group" to releaseConfig["group"],
