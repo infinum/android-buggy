@@ -8,9 +8,9 @@ import java.nio.charset.StandardCharsets
 /**
  * Represents a [BuggyResource] that is backed by a text.
  *
- * @param name Name of the resource.
- * @param text Text content of the resource.
- * @param charset Charset of the text content.
+ * @property name Name of the resource.
+ * @property text Text content of the resource.
+ * @property charset Charset of the text content.
  */
 class TextBuggyResource(
     override val name: String,
