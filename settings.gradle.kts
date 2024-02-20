@@ -1,3 +1,5 @@
+rootProject.name = "Android Buggy"
+
 include(":sample")
 
-rootProject.name = "Android Buggy"
+include(":buggy")
