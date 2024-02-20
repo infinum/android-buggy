@@ -1,4 +1,4 @@
-package com.infinum.libname.sample
+package com.infinum.buggy.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
