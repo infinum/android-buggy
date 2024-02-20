@@ -45,6 +45,10 @@ android {
     }
 }
 
+dependencies{
+    api(libs.timber)
+}
+
 
 extra["mavenPublishProperties"] = mapOf(
     "group" to releaseConfig["group"],

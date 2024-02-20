@@ -5,9 +5,10 @@ detekt = "1.23.1"
 dokka = "1.9.10"
 kotlin = "1.9.22"
 org-jetbrains-kotlin-jvm = "1.9.22"
+timber = "5.0.1"
 
 [plugins]
-detekt-plugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
+detekt-plugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 
 [libraries]
@@ -17,3 +18,4 @@ dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref
 kotlin-core = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 tools-gradle = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
