@@ -1,24 +1,23 @@
 package com.infinum.buggy.timber.file
 
+import com.infinum.buggy.timber.file.FileDefaults.DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES
 import com.infinum.buggy.timber.formatter.BuggyLogFormatter
 import java.io.File
 import java.util.concurrent.Executors
-import java.util.concurrent.atomic.AtomicInteger
 import timber.log.Timber
 
 class LimitFileTimberTree(
-    private val maxFileSizeBytes: Long,
+    private val maxIndividualFileSizeBytes: Long = DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES,
     private val appMetadata: String? = null,
-    private val fileFactory: (Int) -> File,
+    private val fileFactory: () -> File,
 ) : Timber.Tree() {
 
-    private val currentIndex = AtomicInteger()
     private var currentWriter = createNewWriter()
 
     override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
         runCatching {
             EXECUTOR.execute {
-                if (currentWriter.log(priority, tag, message, t) > maxFileSizeBytes) {
+                if (currentWriter.log(priority, tag, message, t) > maxIndividualFileSizeBytes) {
                     currentWriter.close()
                     currentWriter = createNewWriter()
                 }
@@ -26,7 +25,7 @@ class LimitFileTimberTree(
         }
     }
 
-    private fun createNewFile(): File = fileFactory(currentIndex.incrementAndGet())
+    private fun createNewFile(): File = fileFactory()
 
     private fun createNewWriter(): TreeWriter =
         TreeWriter(createNewFile(), BuggyLogFormatter(), appMetadata)

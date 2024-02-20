@@ -5,7 +5,7 @@ import java.io.OutputStream
 
 internal class CountingOutputStream(
     private val delegate: OutputStream,
-    initialSize: Long,
+    initialSize: Long = 0,
 ) : OutputStream() {
     var count = initialSize
         private set
