@@ -4,9 +4,11 @@ androidGradlePlugin = "8.2.0"
 detekt = "1.23.1"
 dokka = "1.9.10"
 kotlin = "1.9.22"
+org-jetbrains-kotlin-jvm = "1.9.22"
 
 [plugins]
 detekt-plugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }

@@ -5,7 +5,6 @@ extra["buildConfig"] = mapOf(
 )
 
 extra["releaseConfig"] = mapOf(
-    // TODO - com.infinum.<YOUR-AWESOME-LIBRARY-NAME>
-    "group" to "com.infinum.libname",
+    "group" to "com.infinum.buggy",
     "version" to "0.0.1"
 )
