@@ -42,9 +42,10 @@ class ZipBuggyResourceProcessorTest {
             TextBuggyResource(name = "entry_4", text = "!")
         )
 
-        val processor = ZipBuggyResourceProcessor(
-            name = "zipped",
-            includeFilter = { list -> list.filter { !it.name.contains("4") } })
+        val processor = ApplyBuggyResourceProcessor(
+            delegate = ZipBuggyResourceProcessor(name = "zipped"),
+            applyTo = { list -> list.filter { !it.name.contains("4") } }
+        )
 
         val result = processor.process(resources).toList().sortedBy { it.name }
 
