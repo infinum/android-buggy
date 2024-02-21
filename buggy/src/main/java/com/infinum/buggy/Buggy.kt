@@ -1,26 +1,27 @@
 package com.infinum.buggy
 
 class Buggy private constructor(
-    @PublishedApi
-    internal val resources: MutableList<BuggyResource>,
+    private val _resources: MutableList<BuggyResource>,
     private val processors: List<BuggyResourceProcessor>,
 ) {
 
+    val resources: Collection<BuggyResource> get() = synchronized(this) { _resources.toList() }
+
     fun <R> export(exporter: Exporter<R>): R {
-        val processed = processors.fold(resources.toList()) { next, processor ->
+        val processed = processors.fold(resources) { next, processor ->
             processor.process(next).toList()
         }
         return exporter.export(processed)
     }
 
-    inline fun <reified T> resourcesOfType(): Collection<T> = resources.filterIsInstance<T>()
-
+    @Synchronized
     fun add(resource: BuggyResource) {
-        resources += resource
+        _resources += resource
     }
 
+    @Synchronized
     fun remove(resource: BuggyResource) {
-        resources -= resource
+        _resources -= resource
     }
 
     fun newBuilder(): Builder = Builder(this)
@@ -54,7 +55,7 @@ class Buggy private constructor(
         }
 
         fun build(): Buggy = Buggy(
-            resources = resources,
+            _resources = resources,
             processors = processors,
         )
     }
