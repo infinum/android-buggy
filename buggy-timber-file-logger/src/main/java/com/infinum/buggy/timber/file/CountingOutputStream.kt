@@ -3,6 +3,9 @@ package com.infinum.buggy.timber.file
 import java.io.IOException
 import java.io.OutputStream
 
+/**
+ * An output stream that counts the number of bytes written to it.
+ */
 internal class CountingOutputStream(
     private val delegate: OutputStream,
     initialSize: Long = 0,

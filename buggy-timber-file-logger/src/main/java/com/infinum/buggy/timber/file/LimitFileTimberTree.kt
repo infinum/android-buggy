@@ -7,6 +7,13 @@ import java.io.File
 import java.util.concurrent.Executors
 import timber.log.Timber
 
+/**
+ * Timber tree that limits the size of individual log files.
+ *
+ * @property maxIndividualFileSizeBytes Maximum size of individual log file in bytes.
+ * @property onFileOpened Callback that is called when new log file is opened.
+ * @property fileFactory Callback that creates new log file.
+ */
 class LimitFileTimberTree(
     private val maxIndividualFileSizeBytes: Long = DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES,
     private val onFileOpened: (BufferedWriter) -> Unit = {},

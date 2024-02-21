@@ -6,6 +6,9 @@ import java.io.Closeable
 import java.io.File
 import java.nio.charset.StandardCharsets
 
+/**
+ * Writes logs to a file.
+ */
 class TreeWriter(
     private val file: File,
     private val formatter: LogFormatter,

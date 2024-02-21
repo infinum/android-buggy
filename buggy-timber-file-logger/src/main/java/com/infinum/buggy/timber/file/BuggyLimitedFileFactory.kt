@@ -13,6 +13,15 @@ import java.util.Locale
 
 private val DATE_TIME_FORMATTER = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ROOT)
 
+/**
+ * Factory for creating log files with a limit on the total size of the files.
+ *
+ * @param context Application context.
+ * @property maxTotalFileSizeBytes Maximum size of all log files in bytes.
+ * @property maxIndividualFileSizeBytes Maximum size of individual log file in bytes.
+ * @param directoryName Name of the directory where log files are stored.
+ * @property logFileNameFactory Callback that creates new log file name.
+ */
 class BuggyLimitedFileFactory(
     context: Context,
     private val maxTotalFileSizeBytes: Long = DEFAULT_MAX_AGGREGATED_FILES_CAPACITY_BYTES,

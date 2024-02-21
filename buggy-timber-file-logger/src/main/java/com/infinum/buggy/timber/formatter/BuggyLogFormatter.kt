@@ -8,6 +8,12 @@ import java.util.Locale
 
 private val DATETIME_FORMAT = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ", Locale.UK)
 
+/**
+ * Default log formatter for Buggy Timber file logger.
+ * It formats log lines in the following format:
+ * "Datetime Tag Message [Exception]"
+ * example : "2024-02-21 09:10:31.819+0100	Debug test"
+ */
 internal class BuggyLogFormatter : LogFormatter {
 
     override fun format(priority: Int, tag: String?, message: String, t: Throwable?): String {
