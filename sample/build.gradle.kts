@@ -56,4 +56,6 @@ dependencies {
     implementation(libs.timber)
     implementation(project(":buggy-timber-logger"))
     implementation(project(":buggy-rolling-file-logger"))
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 }

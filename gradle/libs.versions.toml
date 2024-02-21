@@ -10,6 +10,8 @@ org-jetbrains-kotlin-jvm = "1.9.22"
 turbine = "0.8.0"
 junit = "5.10.1"
 timber = "5.0.1"
+navigationFragmentKtx = "2.7.7"
+navigationUiKtx = "2.7.7"
 
 [bundles]
 test = [
@@ -35,4 +37,6 @@ kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref =
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 
