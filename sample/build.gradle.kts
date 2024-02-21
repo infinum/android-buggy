@@ -54,5 +54,6 @@ dependencies {
     implementation(libs.lifecycle.livedata.ktx)
 
     implementation(libs.timber)
-    implementation(project(":buggy-timber-file-logger"))
+    implementation(project(":buggy-timber-logger"))
+    implementation(project(":buggy-rolling-file-logger"))
 }
