@@ -38,9 +38,8 @@ class BuggyFileRollingLogger(
         BuggyFileWriter(
             createNewFile(neededSpaceBytes),
             BuggyLogFormatter(),
-            onFileOpened
+            onFileOpened,
         )
-
 
     private companion object {
         private val EXECUTOR = Executors.newSingleThreadExecutor {
