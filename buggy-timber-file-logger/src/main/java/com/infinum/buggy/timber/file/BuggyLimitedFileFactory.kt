@@ -54,7 +54,7 @@ class BuggyLimitedFileFactory(
         files.sortedBy { it.lastModified() }.forEach { file ->
             val currentTotalSize = totalLogSize()
             if (currentTotalSize > (maxTotalFileSizeBytes - requestedSize)) {
-                files.find { it == file }?.delete()
+                file.delete()
             }
         }
     }

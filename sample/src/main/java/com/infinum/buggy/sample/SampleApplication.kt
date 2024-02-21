@@ -14,14 +14,13 @@ class SampleApplication : Application() {
 
     @Suppress("MagicNumber")
     private fun setupTimber() {
-        val maxIndividualFIleSize = 15 * 1024L
+        val maxIndividualFileSize = 15 * 1024L
         val fileFactory = BuggyLimitedFileFactory(
             context = this,
-            maxTotalFileSizeBytes = 5 * maxIndividualFIleSize,
-            maxIndividualFileSizeBytes = maxIndividualFIleSize,
+            maxTotalFileSizeBytes = 5 * maxIndividualFileSize,
         )
         val limitFileTimberTree = LimitFileTimberTree(
-            maxIndividualFileSizeBytes = maxIndividualFIleSize,
+            maxIndividualFileSizeBytes = maxIndividualFileSize,
             fileFactory = fileFactory::createFile,
         )
         Timber.plant(
