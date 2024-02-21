@@ -34,3 +34,5 @@ tools-gradle = { module = "com.android.tools.build:gradle", version.ref = "andro
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+
