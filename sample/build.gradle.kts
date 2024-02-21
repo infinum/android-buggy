@@ -33,15 +33,27 @@ android {
             )
         }
     }
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = "17"
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 }
 
 dependencies {
     implementation(libs.androidx.appcompat)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.lifecycle.livedata.ktx)
+
+    implementation(libs.timber)
+    implementation(project(":buggy-timber-logger"))
+    implementation(project(":buggy-rolling-file-logger"))
 }

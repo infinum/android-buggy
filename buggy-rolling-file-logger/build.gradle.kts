@@ -34,7 +34,7 @@ android {
         }
     }
 
-    namespace = "com.infinum.buggy.timber"
+    namespace = "com.infinum.buggy.logger.rolling"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -45,18 +45,22 @@ android {
     }
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 extra["mavenPublishProperties"] = mapOf(
     "group" to releaseConfig["group"],
     "version" to releaseConfig["version"],
-    "artifactId" to "buggyTimberFile",
+    "artifactId" to "buggy-rolling-file-logger",
     "repository" to mapOf(
         "url" to sonatype["url"],
         "username" to sonatype["username"],
         "password" to sonatype["password"]
     ),
-    "name" to "Buggy Timber file",
-    "description" to "Buggy module for writing into file with Timber",
+    "name" to "Buggy rolling file logger",
+    "description" to "Buggy module for writing into file(s) that has limited size and rolls over",
     "url" to "https://github.com/infinum/android-buggy",
     "scm" to mapOf(
         "connection" to "https://github.com/infinum/android-buggy.git",
