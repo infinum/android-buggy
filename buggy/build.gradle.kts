@@ -36,3 +36,12 @@ extra["mavenPublishProperties"] = mapOf(
         "url" to "https://github.com/infinum/android-buggy"
     )
 )
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
+dependencies {
+
+    testImplementation(libs.bundles.test)
+}

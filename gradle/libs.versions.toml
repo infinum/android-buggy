@@ -7,7 +7,16 @@ kotlin = "1.9.22"
 kotlinxCoroutinesAndroid = "1.7.3"
 lifecycleLivedataKtx = "2.6.0"
 org-jetbrains-kotlin-jvm = "1.9.22"
+turbine = "0.8.0"
+junit = "5.10.1"
 timber = "5.0.1"
+
+[bundles]
+test = [
+    "junit-jupiter",
+    "kotlin-test",
+    "turbine"
+]
 
 [plugins]
 detekt-plugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
@@ -22,4 +31,6 @@ kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
 lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 tools-gradle = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
-timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
