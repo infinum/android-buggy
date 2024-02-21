@@ -11,18 +11,17 @@ private val DATETIME_FORMAT = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ", Local
 internal class BuggyLogFormatter : LogFormatter {
 
     override fun format(priority: Int, tag: String?, message: String, t: Throwable?): String {
-        val errorString = if (t != null) {
-            val writer = StringWriter()
-            t.printStackTrace(PrintWriter(writer))
-            System.lineSeparator() + writer.toString()
-        } else {
-            ""
-        }
-        return listOfNotNull(
+        val logLine = listOfNotNull(
             DATETIME_FORMAT.format(Date()),
             tag,
             message,
-            errorString,
-        ).joinToString(separator = " ")
+        ).joinToString(separator = "\t")
+
+        val exceptionLines = t?.let {
+            System.lineSeparator() + StringWriter().apply { t.printStackTrace(PrintWriter(this)) }
+                .toString()
+        } ?: ""
+
+        return logLine + exceptionLines
     }
 }
