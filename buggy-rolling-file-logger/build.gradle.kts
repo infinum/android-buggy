@@ -53,7 +53,7 @@ java {
 extra["mavenPublishProperties"] = mapOf(
     "group" to releaseConfig["group"],
     "version" to releaseConfig["version"],
-    "artifactId" to "buggyRollingFileLogger",
+    "artifactId" to "buggy-rolling-file-logger",
     "repository" to mapOf(
         "url" to sonatype["url"],
         "username" to sonatype["username"],

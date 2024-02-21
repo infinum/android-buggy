@@ -1,6 +1,6 @@
-package com.infinum.buggy.fileRollingLogger
+package com.infinum.buggy.rolling
 
-import com.infinum.buggy.fileRollingLogger.formatter.LogFormatter
+import com.infinum.buggy.rolling.formatter.LogFormatter
 import java.io.BufferedWriter
 import java.io.Closeable
 import java.io.File

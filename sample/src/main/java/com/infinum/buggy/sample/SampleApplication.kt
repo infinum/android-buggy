@@ -1,8 +1,8 @@
 package com.infinum.buggy.sample
 
 import android.app.Application
-import com.infinum.buggy.fileRollingLogger.BuggyFileRollingLogger
-import com.infinum.buggy.fileRollingLogger.BuggyLimitedFileFactory
+import com.infinum.buggy.rolling.BuggyFileRollingLogger
+import com.infinum.buggy.rolling.BuggyLimitedFileFactory
 import com.infinum.buggy.timber.DelegatorTimberTree
 import timber.log.Timber
 

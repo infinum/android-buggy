@@ -1,7 +1,7 @@
-package com.infinum.buggy.fileRollingLogger
+package com.infinum.buggy.rolling
 
-import com.infinum.buggy.fileRollingLogger.FileDefaults.DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES
-import com.infinum.buggy.fileRollingLogger.formatter.BuggyLogFormatter
+import com.infinum.buggy.rolling.FileDefaults.DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES
+import com.infinum.buggy.rolling.formatter.BuggyLogFormatter
 import java.io.BufferedWriter
 import java.io.File
 import java.util.concurrent.Executors

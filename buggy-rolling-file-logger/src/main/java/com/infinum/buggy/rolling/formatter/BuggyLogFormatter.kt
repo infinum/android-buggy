@@ -1,4 +1,4 @@
-package com.infinum.buggy.fileRollingLogger.formatter
+package com.infinum.buggy.rolling.formatter
 
 import java.io.PrintWriter
 import java.io.StringWriter

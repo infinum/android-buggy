@@ -1,10 +1,10 @@
-package com.infinum.buggy.fileRollingLogger
+package com.infinum.buggy.rolling
 
 import android.content.Context
-import com.infinum.buggy.fileRollingLogger.FileDefaults.DEFAULT_DIRECTORY_NAME
-import com.infinum.buggy.fileRollingLogger.FileDefaults.DEFAULT_LOG_FILE_EXTENSION
-import com.infinum.buggy.fileRollingLogger.FileDefaults.DEFAULT_MAX_AGGREGATED_FILES_CAPACITY_BYTES
-import com.infinum.buggy.fileRollingLogger.FileDefaults.DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES
+import com.infinum.buggy.rolling.FileDefaults.DEFAULT_DIRECTORY_NAME
+import com.infinum.buggy.rolling.FileDefaults.DEFAULT_LOG_FILE_EXTENSION
+import com.infinum.buggy.rolling.FileDefaults.DEFAULT_MAX_AGGREGATED_FILES_CAPACITY_BYTES
+import com.infinum.buggy.rolling.FileDefaults.DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES
 import java.io.File
 import java.lang.RuntimeException
 import java.text.SimpleDateFormat

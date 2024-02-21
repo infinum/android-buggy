@@ -1,4 +1,4 @@
-package com.infinum.buggy.fileRollingLogger
+package com.infinum.buggy.rolling
 
 /**
  * Interface for logger that logs messages to a file.

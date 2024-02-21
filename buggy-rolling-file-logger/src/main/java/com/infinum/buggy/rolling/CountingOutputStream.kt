@@ -1,4 +1,4 @@
-package com.infinum.buggy.fileRollingLogger
+package com.infinum.buggy.rolling
 
 import java.io.IOException
 import java.io.OutputStream

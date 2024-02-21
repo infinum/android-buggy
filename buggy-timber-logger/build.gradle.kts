@@ -52,7 +52,7 @@ dependencies{
 extra["mavenPublishProperties"] = mapOf(
     "group" to releaseConfig["group"],
     "version" to releaseConfig["version"],
-    "artifactId" to "buggyTimberFile",
+    "artifactId" to "buggy-timber",
     "repository" to mapOf(
         "url" to sonatype["url"],
         "username" to sonatype["username"],
