@@ -13,12 +13,6 @@ import com.infinum.buggy.resources.ZipBuggyResource
  */
 class ZipBuggyResourceProcessor(
     private val name: String,
-    private val includeFilter: BuggyResourceProcessor = PassThroughBuggyResourceProcessor(),
 ) : BuggyResourceProcessor {
-    override fun process(resources: Collection<BuggyResource>): Collection<BuggyResource> {
-        val include = includeFilter.process(resources).toSet()
-        val zipped = ZipBuggyResource(name, include)
-        val leftover = resources - include
-        return leftover + zipped
-    }
+    override fun process(resources: Collection<BuggyResource>): Collection<BuggyResource> = listOf(ZipBuggyResource(name, resources))
 }
