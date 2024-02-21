@@ -6,11 +6,11 @@ package com.infinum.buggy
  */
 interface Exporter<R> {
 
-        /**
-        * Exports the resources to a report.
-        *
-        * @param resources the resources to be exported.
-        * @return the report.
-        */
-        fun export(resources: Collection<BuggyResource>): R
+    /**
+     * Exports the resources to a report.
+     *
+     * @param resources the resources to be exported.
+     * @return the report.
+     */
+    fun export(resources: Collection<BuggyResource>): R
 }

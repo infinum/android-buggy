@@ -11,6 +11,7 @@ import java.util.zip.ZipInputStream
 class ZipBuggyExporterTest {
 
     private val exportPath = "temp/report.zip"
+
     @AfterEach
     fun cleanUp() {
         File(exportPath).delete()
@@ -45,7 +46,7 @@ class ZipBuggyExporterTest {
     }
 
     @Test
-    fun `export should create an empty zip file if no resources are included inside`() {
+    fun `export should create an empty zip file with no entries if no resources are included inside`() {
         val resources = emptyList<TextBuggyResource>()
 
         val exporter = ZipBuggyExporter(

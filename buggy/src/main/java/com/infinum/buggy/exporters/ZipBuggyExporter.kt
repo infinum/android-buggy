@@ -14,7 +14,7 @@ import java.util.zip.ZipOutputStream
  */
 class ZipBuggyExporter(
     private val exportPath: String,
-    private val bufferSize: Int = DEFAULT_BUFFER_SIZE
+    private val bufferSize: Int = DEFAULT_BUFFER_SIZE,
 ) : Exporter<File> {
     override fun export(resources: Collection<BuggyResource>): File {
         val export = File(exportPath).apply {
@@ -23,7 +23,7 @@ class ZipBuggyExporter(
         }
 
         ZipOutputStream(
-            export.outputStream().buffered(bufferSize = bufferSize)
+            export.outputStream().buffered(bufferSize = bufferSize),
         ).use { zipOutputStream ->
             resources.forEach { resource ->
                 val entry = resource.name
