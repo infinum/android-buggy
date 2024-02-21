@@ -5,13 +5,14 @@ import com.infinum.buggy.timber.file.BuggyLimitedFileFactory
 import com.infinum.buggy.timber.file.LimitFileTimberTree
 import timber.log.Timber
 
-class SampleApplication: Application() {
+class SampleApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
         setupTimber()
     }
 
+    @Suppress("MagicNumber")
     private fun setupTimber() {
         val maxIndividualFIleSize = 15 * 1024L
         val fileFactory = BuggyLimitedFileFactory(
@@ -21,10 +22,10 @@ class SampleApplication: Application() {
         )
         val limitFileTimberTree = LimitFileTimberTree(
             maxIndividualFileSizeBytes = maxIndividualFIleSize,
-            fileFactory = fileFactory::createFile
+            fileFactory = fileFactory::createFile,
         )
         Timber.plant(
-            limitFileTimberTree
+            limitFileTimberTree,
         )
         Timber.plant(Timber.DebugTree())
     }

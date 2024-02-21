@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import java.lang.RuntimeException
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.lang.RuntimeException
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,9 +29,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("MagicNumber")
     private fun generateLogs() {
         lifecycleScope.launch {
-            while(true){
+            while (true) {
                 Timber.d("Debug test")
                 delay(100)
                 Timber.e("Error test")
