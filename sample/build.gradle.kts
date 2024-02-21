@@ -44,4 +44,9 @@ android {
 
 dependencies {
     implementation(libs.androidx.appcompat)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.lifecycle.livedata.ktx)
+
+    implementation(libs.timber)
+    implementation(project(":buggy-timber-file-logger"))
 }

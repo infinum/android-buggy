@@ -4,6 +4,8 @@ androidGradlePlugin = "8.2.0"
 detekt = "1.23.1"
 dokka = "1.9.10"
 kotlin = "1.9.22"
+kotlinxCoroutinesAndroid = "1.7.3"
+lifecycleLivedataKtx = "2.6.0"
 org-jetbrains-kotlin-jvm = "1.9.22"
 timber = "5.0.1"
 
@@ -17,5 +19,7 @@ detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", 
 dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 kotlin-core = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 tools-gradle = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
