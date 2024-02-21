@@ -12,12 +12,11 @@ class ApplicationInfoBuggyResource(
     override val name: String = "application-info.json",
 ) : BuggyResource {
 
-    private val json = JsonBuggyResource(name)
     private val context = context.applicationContext
 
     override fun openStream(): InputStream {
         val packageInfo = getPackageInfo()
-        json.update {
+        return JsonBuggyResource(name).update {
             put("Package name", context.packageName)
             put("Version name", packageInfo?.versionName.orEmpty())
             put("Version code", packageInfo?.longVersionCode.toString())
@@ -31,8 +30,7 @@ class ApplicationInfoBuggyResource(
             put("Min SDK version", context.applicationInfo.minSdkVersion)
             put("Target SDK version", context.applicationInfo.targetSdkVersion)
             put("Split names", context.applicationInfo.splitNames.joinToString(", "))
-        }
-        return json.openStream()
+        }.openStream()
     }
 
     private fun getPackageInfo(): PackageInfo? = try {

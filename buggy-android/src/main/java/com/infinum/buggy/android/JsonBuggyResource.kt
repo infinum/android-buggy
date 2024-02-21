@@ -16,7 +16,7 @@ class JsonBuggyResource(
 
     private val data = JSONObject()
 
-    fun update(block: JSONObject.() -> Unit) {
+    fun update(block: JSONObject.() -> Unit) = apply {
         data.block()
     }
 
