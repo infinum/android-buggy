@@ -1,6 +1,6 @@
 package com.infinum.buggy.resources
 
-import com.infinum.buggy.resources.helpers.readAllEntries
+import com.infinum.buggy.helpers.readAllEntries
 import java.nio.charset.StandardCharsets
 import java.util.zip.ZipException
 import java.util.zip.ZipInputStream

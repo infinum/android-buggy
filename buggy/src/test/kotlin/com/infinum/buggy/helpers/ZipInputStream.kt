@@ -1,4 +1,4 @@
-package com.infinum.buggy.resources.helpers
+package com.infinum.buggy.helpers
 
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
