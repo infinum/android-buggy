@@ -18,14 +18,12 @@ private val DATE_TIME_FORMATTER = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale
  *
  * @param context Application context.
  * @property maxTotalFileSizeBytes Maximum size of all log files in bytes.
- * @property maxIndividualFileSizeBytes Maximum size of individual log file in bytes.
  * @param directoryName Name of the directory where log files are stored.
  * @property logFileNameFactory Callback that creates new log file name.
  */
 class BuggyLimitedFileFactory(
     context: Context,
     private val maxTotalFileSizeBytes: Long = DEFAULT_MAX_AGGREGATED_FILES_CAPACITY_BYTES,
-    private val maxIndividualFileSizeBytes: Long = DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES,
     directoryName: String = DEFAULT_DIRECTORY_NAME,
     val logFileNameFactory: () -> String = ::dateTimeFileName,
 ) {
@@ -38,9 +36,9 @@ class BuggyLimitedFileFactory(
     private fun totalLogSize() = files.sumOf { it.length() }
 
     @Throws(RuntimeException::class)
-    fun createFile(): File {
+    fun createFile(neededSpace: Long = DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES): File {
         if (totalLogSize() >= maxTotalFileSizeBytes) {
-            freeUpTheSpace(maxIndividualFileSizeBytes)
+            freeUpTheSpace(neededSpace)
         }
 
         val fileName = logFileNameFactory()
