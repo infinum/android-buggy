@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets
 /**
  * Writes logs to a file.
  */
-class BuggyFileWriter(
+internal class BuggyFileWriter(
     private val file: File,
     private val formatter: LogFormatter,
     private val onFileOpened: (BufferedWriter) -> Unit = {},

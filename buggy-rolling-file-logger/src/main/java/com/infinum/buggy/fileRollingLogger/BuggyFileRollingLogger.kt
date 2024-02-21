@@ -17,7 +17,7 @@ class BuggyFileRollingLogger(
     private val maxIndividualFileSizeBytes: Long = DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES,
     private val onFileOpened: (BufferedWriter) -> Unit = {},
     private val fileFactory: (Long) -> File,
-) : FileRollingLogger {
+) : Logger {
 
     private var currentWriter = createNewWriter(maxIndividualFileSizeBytes)
 

@@ -50,7 +50,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-// specify per module - mostly needed due to different artifactIds, names, descriptions
 extra["mavenPublishProperties"] = mapOf(
     "group" to releaseConfig["group"],
     "version" to releaseConfig["version"],
