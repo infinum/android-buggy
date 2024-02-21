@@ -1,4 +1,4 @@
-package com.infinum.buggy.timber.file
+package com.infinum.buggy.rollingFileLogger
 
 import java.io.IOException
 import java.io.OutputStream

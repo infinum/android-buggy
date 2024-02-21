@@ -1,6 +1,6 @@
 package com.infinum.buggy.timber.file
 
-import com.infinum.buggy.timber.file.FileDefaults.DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES
+import com.infinum.buggy.rollingFileLogger.FileDefaults.DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES
 import com.infinum.buggy.timber.formatter.BuggyLogFormatter
 import java.io.BufferedWriter
 import java.io.File
@@ -35,8 +35,12 @@ class LimitFileTimberTree(
 
     private fun createNewFile(neededSpaceBytes: Long): File = fileFactory(neededSpaceBytes)
 
-    private fun createNewWriter(neededSpaceBytes: Long): TreeWriter =
-        TreeWriter(createNewFile(neededSpaceBytes), BuggyLogFormatter(), onFileOpened)
+    private fun createNewWriter(neededSpaceBytes: Long): com.infinum.buggy.rollingFileLogger.TreeWriter =
+        com.infinum.buggy.rollingFileLogger.TreeWriter(
+            createNewFile(neededSpaceBytes),
+            BuggyLogFormatter(),
+            onFileOpened
+        )
 
     private companion object {
         private val EXECUTOR = Executors.newSingleThreadExecutor {

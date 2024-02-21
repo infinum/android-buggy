@@ -4,3 +4,4 @@ include(":sample")
 
 include(":buggy")
 include(":buggy-timber-file-logger")
+include(":buggy-rolling-file-logger")

@@ -1,6 +1,5 @@
-package com.infinum.buggy.timber.file
+package com.infinum.buggy.rollingFileLogger
 
-import com.infinum.buggy.timber.formatter.LogFormatter
 import java.io.BufferedWriter
 import java.io.Closeable
 import java.io.File

@@ -1,4 +1,4 @@
-package com.infinum.buggy.timber.file
+package com.infinum.buggy.rollingFileLogger
 
 /**
  * Default values for file related classes.

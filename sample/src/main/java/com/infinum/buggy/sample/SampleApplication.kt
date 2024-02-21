@@ -1,7 +1,7 @@
 package com.infinum.buggy.sample
 
 import android.app.Application
-import com.infinum.buggy.timber.file.BuggyLimitedFileFactory
+import com.infinum.buggy.rollingFileLogger.BuggyLimitedFileFactory
 import com.infinum.buggy.timber.file.LimitFileTimberTree
 import timber.log.Timber
 
@@ -15,7 +15,7 @@ class SampleApplication : Application() {
     @Suppress("MagicNumber")
     private fun setupTimber() {
         val maxIndividualFileSize = 15 * 1024L
-        val fileFactory = BuggyLimitedFileFactory(
+        val fileFactory = com.infinum.buggy.rollingFileLogger.BuggyLimitedFileFactory(
             context = this,
             maxTotalFileSizeBytes = 5 * maxIndividualFileSize,
         )
