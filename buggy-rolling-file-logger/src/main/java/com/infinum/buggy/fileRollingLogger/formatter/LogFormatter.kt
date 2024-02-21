@@ -1,4 +1,4 @@
-package com.infinum.buggy.timber.formatter
+package com.infinum.buggy.fileRollingLogger.formatter
 
 /**
  * Interface for formatting log messages.

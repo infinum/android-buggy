@@ -1,4 +1,4 @@
-package com.infinum.buggy.rollingFileLogger
+package com.infinum.buggy.fileRollingLogger
 
 /**
  * Default values for file related classes.

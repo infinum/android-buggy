@@ -1,5 +1,6 @@
-package com.infinum.buggy.rollingFileLogger
+package com.infinum.buggy.fileRollingLogger
 
+import com.infinum.buggy.fileRollingLogger.formatter.LogFormatter
 import java.io.BufferedWriter
 import java.io.Closeable
 import java.io.File
@@ -8,7 +9,7 @@ import java.nio.charset.StandardCharsets
 /**
  * Writes logs to a file.
  */
-class TreeWriter(
+class BuggyFileWriter(
     private val file: File,
     private val formatter: LogFormatter,
     private val onFileOpened: (BufferedWriter) -> Unit = {},

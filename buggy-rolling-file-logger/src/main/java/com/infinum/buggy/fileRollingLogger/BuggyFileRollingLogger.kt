@@ -1,24 +1,23 @@
-package com.infinum.buggy.timber.file
+package com.infinum.buggy.fileRollingLogger
 
-import com.infinum.buggy.rollingFileLogger.FileDefaults.DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES
-import com.infinum.buggy.timber.formatter.BuggyLogFormatter
+import com.infinum.buggy.fileRollingLogger.FileDefaults.DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES
+import com.infinum.buggy.fileRollingLogger.formatter.BuggyLogFormatter
 import java.io.BufferedWriter
 import java.io.File
 import java.util.concurrent.Executors
-import timber.log.Timber
 
 /**
- * Timber tree that limits the size of individual log files.
+ * Logger that writes into files and limits the size of individual log files.
  *
  * @property maxIndividualFileSizeBytes Maximum size of individual log file in bytes.
  * @property onFileOpened Callback that is called when new log file is opened.
  * @property fileFactory Callback that creates new log file. Argument is the wanted size of the file.
  */
-class LimitFileTimberTree(
+class BuggyFileRollingLogger(
     private val maxIndividualFileSizeBytes: Long = DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES,
     private val onFileOpened: (BufferedWriter) -> Unit = {},
     private val fileFactory: (Long) -> File,
-) : Timber.Tree() {
+) : FileRollingLogger {
 
     private var currentWriter = createNewWriter(maxIndividualFileSizeBytes)
 
@@ -35,12 +34,13 @@ class LimitFileTimberTree(
 
     private fun createNewFile(neededSpaceBytes: Long): File = fileFactory(neededSpaceBytes)
 
-    private fun createNewWriter(neededSpaceBytes: Long): com.infinum.buggy.rollingFileLogger.TreeWriter =
-        com.infinum.buggy.rollingFileLogger.TreeWriter(
+    private fun createNewWriter(neededSpaceBytes: Long): BuggyFileWriter =
+        BuggyFileWriter(
             createNewFile(neededSpaceBytes),
             BuggyLogFormatter(),
             onFileOpened
         )
+
 
     private companion object {
         private val EXECUTOR = Executors.newSingleThreadExecutor {
