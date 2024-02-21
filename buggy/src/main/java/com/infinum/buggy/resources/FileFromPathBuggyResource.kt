@@ -6,14 +6,13 @@ import java.io.IOException
 import java.io.InputStream
 
 /**
- * Represents a [BuggyResource] that is backed by a [File].
- *
+ * Represents a [BuggyResource] that is backed by a file. User need to provide a path to the file.
  */
-class FileBuggyResource(
+class FileFromPathBuggyResource(
     override val name: String,
-    private val file: File,
+    private val path: String,
 ) : BuggyResource {
 
     @Throws(IOException::class)
-    override fun openStream(): InputStream = file.inputStream()
+    override fun openStream(): InputStream = File(path).inputStream()
 }
