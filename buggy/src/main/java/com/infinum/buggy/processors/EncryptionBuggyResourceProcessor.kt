@@ -26,9 +26,7 @@ class EncryptionBuggyResourceProcessor(
     override fun process(resources: Collection<BuggyResource>): Collection<BuggyResource> {
         val key = createSecretKey()
         val iv = createInitializationVector()
-        resourceCipher.apply {
-            init(Cipher.ENCRYPT_MODE, key, iv)
-        }
+        resourceCipher.init(Cipher.ENCRYPT_MODE, key, iv)
 
         val encryptedResources = resources.map { resource -> EncryptedBuggyResource(resource, resourceCipher) }
 
