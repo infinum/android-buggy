@@ -35,9 +35,10 @@ class BuggyLimitedFileFactory(
         }
 
         val fileName = logFileNameFactory()
-        val path = File(filesDir, fileName)
-
-        path.createNewFile()
+        val path = File(filesDir, fileName).apply {
+            parentFile?.mkdirs()
+            createNewFile()
+        }
 
         return path
     }
