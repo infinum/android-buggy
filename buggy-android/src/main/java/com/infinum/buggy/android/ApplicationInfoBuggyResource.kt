@@ -40,7 +40,7 @@ class ApplicationInfoBuggyResource(
             @Suppress("DEPRECATION")
             context.packageManager.getPackageInfo(context.packageName, 0)
         }
-    } catch (e: PackageManager.NameNotFoundException) {
+    } catch (@Suppress("SwallowedException") e: PackageManager.NameNotFoundException) {
         null
     }
 }

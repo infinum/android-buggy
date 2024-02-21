@@ -11,7 +11,7 @@ import org.json.JSONObject
  * @property name the name of the resource
  */
 class JsonBuggyResource(
-    override val name: String
+    override val name: String,
 ) : BuggyResource {
 
     private val data = JSONObject()
