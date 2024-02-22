@@ -1,3 +1,5 @@
+@file:Suppress("ImportOrdering")
+
 package com.infinum.buggy.sample.report
 
 import android.content.Context
@@ -15,15 +17,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.infinum.buggy.sample.R
 import com.infinum.buggy.sample.databinding.FragmentReportProblemBinding
+import timber.log.Timber
 import java.io.File
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
+@Suppress("MagicNumber")
 class ReportProblemFragment : Fragment() {
 
     private val viewModel = ReportProblemViewModel()
@@ -34,7 +36,7 @@ class ReportProblemFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentReportProblemBinding.inflate(inflater, container, false)
         return binding.root
@@ -54,7 +56,7 @@ class ReportProblemFragment : Fragment() {
             btnSubmit.setOnClickListener {
                 viewModel.onExport(
                     input.text?.toString(),
-                    requireContext()
+                    requireContext(),
                 )
             }
             input.addTextChangedListener(object : TextWatcher {
@@ -62,7 +64,7 @@ class ReportProblemFragment : Fragment() {
                     s: CharSequence?,
                     start: Int,
                     count: Int,
-                    after: Int
+                    after: Int,
                 ) = Unit
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) =
@@ -75,7 +77,6 @@ class ReportProblemFragment : Fragment() {
                         btnSubmit.isEnabled = false
                     }
                 }
-
             })
         }
 
@@ -103,7 +104,7 @@ class ReportProblemFragment : Fragment() {
                     sendTo = event.sendTo,
                     subject = "Report a problem",
                     body = event.body,
-                    attachments = event.attachments.map { buggyShareableUri(requireContext(), it) }
+                    attachments = event.attachments.map { buggyShareableUri(requireContext(), it) },
                 ).takeIf { it.resolveActivity(requireContext().packageManager) != null }?.let {
                     startActivity(it)
                 }
@@ -116,7 +117,7 @@ class ReportProblemFragment : Fragment() {
         sendTo: String?,
         subject: String?,
         body: String?,
-        attachments: List<Uri>
+        attachments: List<Uri>,
     ) =
         Intent(if (attachments.size > 1) Intent.ACTION_SEND_MULTIPLE else Intent.ACTION_SEND).apply {
             type = "text/plain"
@@ -142,7 +143,7 @@ class ReportProblemFragment : Fragment() {
     private fun buggyShareableUri(context: Context, file: File): Uri = FileProvider.getUriForFile(
         context,
         context.packageName + ".provider",
-        file
+        file,
     )
 
     override fun onDestroyView() {

@@ -2,7 +2,6 @@ package com.infinum.buggy.sample.report
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.infinum.buggy.sample.databinding.ActivityMainBinding
 import com.infinum.buggy.sample.databinding.ActivityReportProblemBinding
 
 class ReportProblemActivity : AppCompatActivity() {

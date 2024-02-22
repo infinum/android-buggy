@@ -6,6 +6,6 @@ sealed class ReportProblemEvent {
     class NavigateToEmailApp(
         val sendTo: String,
         val body: String,
-        val attachments: List<File>
+        val attachments: List<File>,
     ) : ReportProblemEvent()
 }

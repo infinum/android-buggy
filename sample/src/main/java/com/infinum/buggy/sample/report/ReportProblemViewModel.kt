@@ -1,7 +1,6 @@
 package com.infinum.buggy.sample.report
 
 import android.content.Context
-import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.infinum.buggy.Buggy
@@ -9,14 +8,15 @@ import com.infinum.buggy.exporters.ZipBuggyExporter
 import com.infinum.buggy.processors.EncryptionBuggyResourceProcessor
 import com.infinum.buggy.processors.ZipBuggyResourceProcessor
 import com.infinum.buggy.resources.FileBuggyResource
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.launch
 import java.io.File
 import java.security.KeyPair
 import java.security.KeyPairGenerator
 import javax.crypto.Cipher
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 
+@Suppress("MagicNumber", "LateinitUsage")
 class ReportProblemViewModel : ViewModel() {
 
     private val _events = Channel<ReportProblemEvent>()
@@ -34,7 +34,7 @@ class ReportProblemViewModel : ViewModel() {
         builderBuilder.add(
             ZipBuggyResourceProcessor(
                 name = "zipped-logs",
-            )
+            ),
         )
 
         val keyPair = generateKeyPair()
@@ -43,20 +43,20 @@ class ReportProblemViewModel : ViewModel() {
                 keyCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding").apply {
                     init(
                         Cipher.ENCRYPT_MODE,
-                        keyPair.public
+                        keyPair.public,
                     )
                 },
                 resourceCipher = Cipher.getInstance("AES/CBC/PKCS5Padding"),
-            )
+            ),
         )
         buggy = builderBuilder.build()
     }
 
+    @Suppress("MagicNumber")
     private fun generateKeyPair(): KeyPair =
         KeyPairGenerator.getInstance("RSA").apply {
             initialize(2048)
         }.genKeyPair()
-
 
     // Don't pass context to view model in real app this way, this is just for the sake of the example
     fun onExport(description: String?, context: Context) {
@@ -69,16 +69,16 @@ class ReportProblemViewModel : ViewModel() {
 
             buggy.export(
                 ZipBuggyExporter(
-                    file = report
-                )
+                    file = report,
+                ),
             )
 
             _events.send(
                 ReportProblemEvent.NavigateToEmailApp(
                     sendTo = "test@test.com",
                     body = description ?: "",
-                    attachments = listOf(report)
-                )
+                    attachments = listOf(report),
+                ),
             )
         }
     }
