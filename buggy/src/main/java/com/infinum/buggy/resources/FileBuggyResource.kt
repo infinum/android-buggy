@@ -10,9 +10,14 @@ import java.io.InputStream
  *
  */
 class FileBuggyResource(
-    override val name: String,
     private val file: File,
+    override val name: String = file.name,
 ) : BuggyResource {
+
+    constructor(
+        path: String,
+        name: String = File(path).name,
+    ) : this(File(path), name)
 
     @Throws(IOException::class)
     override fun openStream(): InputStream = file.inputStream()
