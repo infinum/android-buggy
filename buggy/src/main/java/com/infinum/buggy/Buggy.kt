@@ -1,11 +1,12 @@
 package com.infinum.buggy
 
 class Buggy private constructor(
-    private val _resources: MutableList<BuggyResource>,
+    resources: List<BuggyResource>,
     private val processors: List<BuggyResourceProcessor>,
 ) {
 
-    val resources: Collection<BuggyResource> get() = synchronized(this) { _resources.toList() }
+    private val mutableResources: MutableList<BuggyResource> = resources.toMutableList()
+    val resources: Collection<BuggyResource> get() = synchronized(this) { mutableResources.toList() }
 
     fun <R> export(exporter: Exporter<R>): R {
         val processed = processors.fold(resources) { next, processor ->
@@ -16,12 +17,12 @@ class Buggy private constructor(
 
     @Synchronized
     fun add(resource: BuggyResource) {
-        _resources += resource
+        mutableResources += resource
     }
 
     @Synchronized
     fun remove(resource: BuggyResource) {
-        _resources -= resource
+        mutableResources -= resource
     }
 
     fun newBuilder(): Builder = Builder(this)
@@ -55,7 +56,7 @@ class Buggy private constructor(
         }
 
         fun build(): Buggy = Buggy(
-            _resources = resources,
+            resources = resources,
             processors = processors,
         )
     }
