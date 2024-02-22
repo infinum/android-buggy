@@ -13,6 +13,8 @@ import com.infinum.buggy.resources.ZipBuggyResource
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import java.io.File
+import java.security.KeyPair
+import java.security.KeyPairGenerator
 import javax.crypto.Cipher
 
 class ReportProblemViewModel : ViewModel() {
@@ -34,20 +36,32 @@ class ReportProblemViewModel : ViewModel() {
                 name = "zippedBuggyResource",
             )
         )
+
+        val keyPair = generateKeyPair()
         builderBuilder.add(
             EncryptionBuggyResourceProcessor(
-                keyCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding"),
+                keyCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding").apply {
+                    init(
+                        Cipher.ENCRYPT_MODE,
+                        keyPair.public
+                    )
+                },
                 resourceCipher = Cipher.getInstance("AES/CBC/PKCS5Padding"),
             )
         )
         buggy = builderBuilder.build()
     }
 
+    private fun generateKeyPair(): KeyPair =
+        KeyPairGenerator.getInstance("RSA").apply {
+            initialize(2048)
+        }.genKeyPair()
+
 
     // Don't pass context to view model in real app this way, this is just for the sake of the example
     fun onExport(description: String?, context: Context) {
         val dir = File(context.filesDir, "buggy-reports")
-        val report = File(dir,"buggy-report.zip").apply {
+        val report = File(dir, "buggy-report.zip").apply {
             parentFile?.mkdirs()
             createNewFile()
         }
