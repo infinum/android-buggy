@@ -145,6 +145,11 @@ class Buggy private constructor(
         }
 
         /**
+         * Returns a modifiable list of processors that can be used to modify the list of processors.
+         */
+        fun processors(): MutableList<BuggyResourceProcessor> = processors
+
+        /**
          * Creates a new instance of [Buggy] with the set of resources and processors added to this builder.
          *
          * @return new instance of [Buggy]
