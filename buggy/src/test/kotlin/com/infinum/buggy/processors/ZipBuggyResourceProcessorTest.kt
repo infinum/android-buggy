@@ -2,7 +2,7 @@ package com.infinum.buggy.processors
 
 import com.infinum.buggy.resources.TextBuggyResource
 import com.infinum.buggy.resources.ZipBuggyResource
-import com.infinum.buggy.resources.helpers.readAllEntries
+import com.infinum.buggy.helpers.readAllEntries
 import java.util.zip.ZipInputStream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertInstanceOf
