@@ -1,7 +1,7 @@
 package com.infinum.buggy.exporters
 
+import com.infinum.buggy.helpers.readAllEntries
 import com.infinum.buggy.resources.TextBuggyResource
-import com.infinum.buggy.resources.helpers.readAllEntries
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
