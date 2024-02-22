@@ -1,9 +1,11 @@
 package com.infinum.buggy.sample
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.infinum.buggy.sample.databinding.ActivityMainBinding
+import com.infinum.buggy.sample.report.ReportProblemActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -41,6 +43,11 @@ class MainActivity : AppCompatActivity() {
                         delay(200)
                     }
                 }
+            }
+
+            reportButton.setOnClickListener {
+                val intent = Intent(this@MainActivity, ReportProblemActivity::class.java)
+                startActivity(intent)
             }
         }
     }
