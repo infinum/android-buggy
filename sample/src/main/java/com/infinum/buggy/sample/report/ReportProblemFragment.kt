@@ -20,33 +20,41 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class ReportProblemFragment : Fragment() {
 
     private val viewModel = ReportProblemViewModel()
 
-    private lateinit var viewBinding: FragmentReportProblemBinding
+    private var _binding: FragmentReportProblemBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_report_problem, container, false)
+    ): View {
+        _binding = FragmentReportProblemBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding = FragmentReportProblemBinding.bind(view)
+
+        val logs = getLogs() // assumption here is that logs exist
+        Timber.d("Logs: $logs")
+        viewModel.initBuggy(logs)
 
         view.translationZ = 1f
 
-        with(viewBinding) {
+        with(binding) {
             toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
-            btnSubmit.setOnClickListener { viewModel.onExport(input.text?.toString()) }
+            btnSubmit.setOnClickListener { viewModel.onExport(input.text?.toString(), requireContext()) }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
             delay(200)
-            viewBinding.input.requestFocus()
+            binding.input.requestFocus()
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -54,6 +62,11 @@ class ReportProblemFragment : Fragment() {
                 viewModel.events.onEach { handleEvent(it) }.launchIn(this)
             }
         }
+    }
+
+    private fun getLogs(): List<File> {
+        val internalLogsPath = File(requireContext().filesDir, "buggy-logs")
+        return internalLogsPath.listFiles()?.toList() ?: emptyList()
     }
 
     private fun handleEvent(event: ReportProblemEvent) {
@@ -103,4 +116,9 @@ class ReportProblemFragment : Fragment() {
         context.packageName + ".buggy.provider",
         file
     )
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
