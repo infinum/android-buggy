@@ -16,8 +16,7 @@ class FileBuggyResource(
 
     constructor(
         path: String,
-        name: String = File(path).name,
-    ) : this(File(path), name)
+    ) : this(File(path))
 
     @Throws(IOException::class)
     override fun openStream(): InputStream = file.inputStream()
