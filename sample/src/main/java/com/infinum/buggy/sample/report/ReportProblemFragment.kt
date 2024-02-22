@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +51,32 @@ class ReportProblemFragment : Fragment() {
 
         with(binding) {
             toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
-            btnSubmit.setOnClickListener { viewModel.onExport(input.text?.toString(), requireContext()) }
+            btnSubmit.setOnClickListener {
+                viewModel.onExport(
+                    input.text?.toString(),
+                    requireContext()
+                )
+            }
+            input.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) = Unit
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) =
+                    Unit
+
+                override fun afterTextChanged(s: Editable?) {
+                    if (s?.isNotEmpty() == true) {
+                        btnSubmit.isEnabled = true
+                    } else {
+                        btnSubmit.isEnabled = false
+                    }
+                }
+
+            })
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -90,30 +117,31 @@ class ReportProblemFragment : Fragment() {
         subject: String?,
         body: String?,
         attachments: List<Uri>
-    ) = Intent(if (attachments.size > 1) Intent.ACTION_SEND_MULTIPLE else Intent.ACTION_SEND).apply {
-        type = "text/plain"
-        if (attachments.isNotEmpty()) {
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            if (attachments.size > 1) {
-                putExtra(Intent.EXTRA_STREAM, ArrayList(attachments.toList()))
-            } else {
-                putExtra(Intent.EXTRA_STREAM, attachments.first())
+    ) =
+        Intent(if (attachments.size > 1) Intent.ACTION_SEND_MULTIPLE else Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            if (attachments.isNotEmpty()) {
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                if (attachments.size > 1) {
+                    putExtra(Intent.EXTRA_STREAM, ArrayList(attachments.toList()))
+                } else {
+                    putExtra(Intent.EXTRA_STREAM, attachments.first())
+                }
+            }
+            if (sendTo != null) {
+                putExtra(Intent.EXTRA_EMAIL, arrayOf(sendTo))
+            }
+            if (subject != null) {
+                putExtra(Intent.EXTRA_SUBJECT, subject)
+            }
+            if (body != null) {
+                putExtra(Intent.EXTRA_TEXT, body)
             }
         }
-        if (sendTo != null) {
-            putExtra(Intent.EXTRA_EMAIL, arrayOf(sendTo))
-        }
-        if (subject != null) {
-            putExtra(Intent.EXTRA_SUBJECT, subject)
-        }
-        if (body != null) {
-            putExtra(Intent.EXTRA_TEXT, body)
-        }
-    }
 
     private fun buggyShareableUri(context: Context, file: File): Uri = FileProvider.getUriForFile(
         context,
-        context.packageName + ".buggy.provider",
+        context.packageName + ".provider",
         file
     )
 

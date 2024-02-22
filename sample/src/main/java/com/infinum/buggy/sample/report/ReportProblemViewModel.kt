@@ -1,17 +1,17 @@
 package com.infinum.buggy.sample.report
 
 import android.content.Context
+import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.infinum.buggy.Buggy
-import com.infinum.buggy.BuggyResourceProcessor
 import com.infinum.buggy.exporters.ZipBuggyExporter
 import com.infinum.buggy.processors.EncryptionBuggyResourceProcessor
 import com.infinum.buggy.processors.ZipBuggyResourceProcessor
-import com.infinum.buggy.resources.EncryptedBuggyResource
 import com.infinum.buggy.resources.FileBuggyResource
-import com.infinum.buggy.resources.ZipBuggyResource
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 import java.io.File
 import java.security.KeyPair
 import java.security.KeyPairGenerator
@@ -60,18 +60,26 @@ class ReportProblemViewModel : ViewModel() {
 
     // Don't pass context to view model in real app this way, this is just for the sake of the example
     fun onExport(description: String?, context: Context) {
-        val dir = File(context.filesDir, "buggy-reports")
-        val report = File(dir, "buggy-report.zip").apply {
-            parentFile?.mkdirs()
-            createNewFile()
-        }
+        viewModelScope.launch {
+            val dir = File(context.filesDir, "buggy-reports")
+            val report = File(dir, "buggy-report.zip").apply {
+                parentFile?.mkdirs()
+                createNewFile()
+            }
 
-        buggy.export(
-            ZipBuggyExporter(
-                file = report
+            buggy.export(
+                ZipBuggyExporter(
+                    file = report
+                )
             )
-        )
 
-        // todo send event
+            _events.send(
+                ReportProblemEvent.NavigateToEmailApp(
+                    sendTo = "test@test.com",
+                    body = description ?: "",
+                    attachments = listOf(report)
+                )
+            )
+        }
     }
 }
