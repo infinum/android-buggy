@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     @Suppress("MagicNumber")
     private fun setupButtons() {
         viewBinding.apply {
+            // todo move this to a separate screen (RollingLoggerActivity)
             exceptionButton.setOnClickListener {
                 lifecycleScope.launch {
                     val exception = RuntimeException("Test")
