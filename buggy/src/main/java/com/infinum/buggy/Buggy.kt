@@ -31,6 +31,7 @@ class Buggy private constructor(
     /**
      * Exports the resources using the given [exporter].
      * Before the export, all the resources are processed using the added processors.
+     * The order in which processors are applied is the same as the order in the processors list.
      *
      * @param exporter exporter used to export the resources
      * @return exported resource
@@ -124,6 +125,7 @@ class Buggy private constructor(
 
         /**
          * Adds a new processor to the list of processors.
+         * The order in which the processors are applied during the export is the same as the order in the processors list.
          *
          * @param processor processor to add
          * @return this builder
