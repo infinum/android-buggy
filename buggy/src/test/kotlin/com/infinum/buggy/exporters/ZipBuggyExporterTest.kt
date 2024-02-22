@@ -1,9 +1,10 @@
 package com.infinum.buggy.exporters
 
+import com.infinum.buggy.helpers.readAllEntries
 import com.infinum.buggy.resources.TextBuggyResource
-import com.infinum.buggy.resources.helpers.readAllEntries
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.io.File
 import java.util.zip.ZipInputStream
@@ -11,6 +12,15 @@ import java.util.zip.ZipInputStream
 class ZipBuggyExporterTest {
 
     private val exportPath = "temp/report.zip"
+    private var exportFile: File = File(exportPath)
+
+    @BeforeEach
+    fun setUp() {
+        exportFile = File(exportPath).apply {
+            parentFile?.mkdirs()
+            createNewFile()
+        }
+    }
 
     @AfterEach
     fun cleanUp() {
@@ -27,7 +37,7 @@ class ZipBuggyExporterTest {
         )
 
         val exporter = ZipBuggyExporter(
-            exportPath = exportPath
+            file = exportFile
         )
 
         val export = exporter.export(resources)
@@ -50,7 +60,7 @@ class ZipBuggyExporterTest {
         val resources = emptyList<TextBuggyResource>()
 
         val exporter = ZipBuggyExporter(
-            exportPath = exportPath
+            file = exportFile
         )
 
         val export = exporter.export(resources)

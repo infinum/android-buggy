@@ -9,21 +9,16 @@ import java.util.zip.ZipOutputStream
 
 /**
  * Exports the resources to a zip file.
- * @property exportPath the path to the zip file.
+ * @property file the file to be used for exporting report.
  * @property bufferSize the buffer size to be used when exporting the resources.
  */
 class ZipBuggyExporter(
-    private val exportPath: String,
+    private val file: File,
     private val bufferSize: Int = DEFAULT_BUFFER_SIZE,
 ) : Exporter<File> {
     override fun export(resources: Collection<BuggyResource>): File {
-        val export = File(exportPath).apply {
-            parentFile?.mkdirs()
-            createNewFile()
-        }
-
         ZipOutputStream(
-            export.outputStream().buffered(bufferSize = bufferSize),
+            file.outputStream().buffered(bufferSize = bufferSize),
         ).use { zipOutputStream ->
             resources.forEach { resource ->
                 val entry = resource.name
@@ -36,6 +31,6 @@ class ZipBuggyExporter(
             }
         }
 
-        return export
+        return file
     }
 }
