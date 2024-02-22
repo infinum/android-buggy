@@ -50,6 +50,9 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this@MainActivity, ReportProblemActivity::class.java)
                 startActivity(intent)
             }
+
+            // todo add plain export
+            // todo add option for exporting encrypted logs and decryption of logs
         }
     }
 }

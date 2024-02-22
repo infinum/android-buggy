@@ -33,7 +33,7 @@ class ReportProblemViewModel : ViewModel() {
         // add processors to buggy, order of processors is important
         builderBuilder.add(
             ZipBuggyResourceProcessor(
-                name = "zippedBuggyResource",
+                name = "zipped-logs",
             )
         )
 
