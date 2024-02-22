@@ -14,7 +14,7 @@ package com.infinum.buggy
  * ```
  *
  * @param resources initial resources
- * @param processors processors used to process the resources before the export
+ * @property processors processors used to process the resources before the export
  */
 class Buggy private constructor(
     resources: List<BuggyResource>,
@@ -33,6 +33,7 @@ class Buggy private constructor(
      * Before the export, all the resources are processed using the added processors.
      * The order in which processors are applied is the same as the order in the processors list.
      *
+     * @param R type of the exported resource
      * @param exporter exporter used to export the resources
      * @return exported resource
      */
