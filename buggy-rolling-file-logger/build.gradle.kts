@@ -50,6 +50,10 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
+dependencies{
+    api(project(":buggy"))
+}
+
 extra["mavenPublishProperties"] = mapOf(
     "group" to releaseConfig["group"],
     "version" to releaseConfig["version"],

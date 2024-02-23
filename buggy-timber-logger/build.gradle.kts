@@ -47,6 +47,7 @@ android {
 
 dependencies{
     api(libs.timber)
+    api(project(":buggy"))
 }
 
 extra["mavenPublishProperties"] = mapOf(
