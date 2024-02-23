@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <selector>
+            <item android:state_enabled="true">
+                <shape android:shape="rectangle">
+
+                    <corners android:radius="2dp" />
+                    <solid android:color="?attr/colorPrimary" />
+
+                </shape>
+            </item>
+            <item android:state_enabled="false">
+                <shape android:shape="rectangle">
+
+                    <corners android:radius="2dp" />
+                    <solid android:color="?attr/colorPrimaryDark" />
+
+                </shape>
+            </item>
+        </selector>
+    </item>
+    <item android:drawable="?attr/selectableItemBackground" />
+</layer-list>

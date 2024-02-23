@@ -8,6 +8,14 @@
     tools:context="com.infinum.buggy.sample.MainActivity">
 
     <Button
+        android:id="@+id/reportButton"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/report_problem_with_ui" />
+
+    <Button
         android:id="@+id/logsButton"
         android:layout_margin="16dp"
         android:padding="16dp"

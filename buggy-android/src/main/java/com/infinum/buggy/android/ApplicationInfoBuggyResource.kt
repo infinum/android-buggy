@@ -29,7 +29,7 @@ class ApplicationInfoBuggyResource(
             }
             put("Min SDK version", context.applicationInfo.minSdkVersion)
             put("Target SDK version", context.applicationInfo.targetSdkVersion)
-            put("Split names", context.applicationInfo.splitNames.joinToString(", "))
+            put("Split names", context.applicationInfo.splitNames?.joinToString(", "))
         }.openStream()
     }
 
