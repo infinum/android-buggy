@@ -24,13 +24,29 @@ android {
         versionName = releaseConfig["version"] as String
     }
 
+    signingConfigs {
+        create("dummy") {
+            storeFile =  file("dummy.jks")
+            storePassword =  "dummydummy"
+            keyAlias = "dummy"
+            keyPassword = "dummydummy"
+        }
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("dummy")
+        }
+        debug {
+            isDebuggable = true
+            isMinifyEnabled = false
+            applicationIdSuffix = ".debug"
         }
     }
     

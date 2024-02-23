@@ -61,7 +61,7 @@ afterEvaluate {
                     }
                     developers {
                         developer {
-                            id = 'karloceh'
+                            id = 'KCeh'
                             name = 'Karlo Čeh'
                             email = 'karlo.ceh@infinum.com'
                         }
