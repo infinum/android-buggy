@@ -25,31 +25,32 @@ class ReportProblemViewModel : ViewModel() {
     lateinit var buggy: Buggy
 
     fun initBuggy(logs: List<File>) {
-        val builderBuilder = Buggy.Builder()
-        // add resources to buggy
-        logs.forEach {
-            builderBuilder.add(FileBuggyResource(it))
-        }
-        // add processors to buggy, order of processors is important
-        builderBuilder.add(
-            ZipBuggyResourceProcessor(
-                name = "zipped-logs",
-            ),
-        )
+        with(Buggy.Builder()) {
+            // add resources to buggy
+            logs.forEach {
+                add(FileBuggyResource(it))
+            }
+            // add processors to buggy, order of processors is important
+            add(
+                ZipBuggyResourceProcessor(
+                    name = "zipped-logs",
+                ),
+            )
 
-        val keyPair = generateKeyPair()
-        builderBuilder.add(
-            EncryptionBuggyResourceProcessor(
-                keyCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding").apply {
-                    init(
-                        Cipher.ENCRYPT_MODE,
-                        keyPair.public,
-                    )
-                },
-                resourceCipher = Cipher.getInstance("AES/CBC/PKCS5Padding"),
-            ),
-        )
-        buggy = builderBuilder.build()
+            val keyPair = generateKeyPair()
+            add(
+                EncryptionBuggyResourceProcessor(
+                    keyCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding").apply {
+                        init(
+                            Cipher.ENCRYPT_MODE,
+                            keyPair.public,
+                        )
+                    },
+                    resourceCipher = Cipher.getInstance("AES/CBC/PKCS5Padding"),
+                ),
+            )
+            buggy = build()
+        }
     }
 
     @Suppress("MagicNumber")
