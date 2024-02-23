@@ -45,7 +45,7 @@ android {
     }
 }
 
-dependencies{
+dependencies {
     api(libs.timber)
 }
 

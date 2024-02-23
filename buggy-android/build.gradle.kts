@@ -34,7 +34,7 @@ android {
         }
     }
 
-    namespace = "com.infinum.buggy.logger.rolling"
+    namespace = "com.infinum.buggy.android"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

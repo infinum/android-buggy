@@ -12,7 +12,7 @@ task sourcesJar(type: Jar) {
     getArchiveClassifier().set("sources")
     if (project.plugins.hasPlugin('com.android.application')
         || project.plugins.hasPlugin('com.android.library')) {
-        from android.sourceSets.main.kotlin.srcDirs
+        from android.sourceSets.main.java.srcDirs
     } else {
         from sourceSets.main.allJava
     }
@@ -35,18 +35,20 @@ afterEvaluate {
         }
         publications {
             release(MavenPublication) {
-                // Only needed for non Android modules. Uncomment if it is needed.
-                // from components.java
+                project.plugins.withId("com.android.library") {
+                    from components.release
+                }
+                project.plugins.withId("java-library") {
+                    from components.java
+                }
 
                 groupId = properties.group
                 version = properties.version
                 artifactId = properties.artifactId
 
-                project.plugins.withId("com.android.library") {
-                    artifact bundleReleaseAar
+                project.plugins.withId("java-library") {
+                    artifact sourcesJar
                 }
-
-                artifact sourcesJar
                 artifact javadocsJar
 
                 pom {
