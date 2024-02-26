@@ -6,5 +6,9 @@
     <string name="max_size_of_logs_mb">Max size of logs (set in Application class): %1$d MB</string>
     <string name="max_size_of_logs_kb">Max size of logs (set in Application class): %1$d KB</string>
     <string name="generate_logs">Generate logs</string>
+    <string name="test_logs_encryption_decryption">Test logs encryption decryption</string>
+    <string name="plain_text_export">Plain text export</string>
+    <string name="generate_encrypted_report">Generate encrypted report</string>
+    <string name="decrypt_report">Decrypt Report</string>
 
 </resources>

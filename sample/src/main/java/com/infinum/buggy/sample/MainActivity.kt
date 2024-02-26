@@ -3,13 +3,10 @@ package com.infinum.buggy.sample
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.infinum.buggy.sample.databinding.ActivityMainBinding
+import com.infinum.buggy.sample.encryptDecrypt.EncryptDecryptActivity
 import com.infinum.buggy.sample.logs.RollingLoggerActivity
 import com.infinum.buggy.sample.report.ReportProblemActivity
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,13 +29,20 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
+            // represents standard use case for library (generate report and send it)
             reportButton.setOnClickListener {
                 val intent = Intent(this@MainActivity, ReportProblemActivity::class.java)
                 startActivity(intent)
             }
 
-            // todo add plain export
-            // todo add option for exporting encrypted logs and decryption of logs
+            encryptDecryptButton.setOnClickListener {
+                val intent = Intent(this@MainActivity, EncryptDecryptActivity::class.java)
+                startActivity(intent)
+            }
+
+            plainTextExportButton.setOnClickListener {
+                // todo
+            }
         }
     }
 }
