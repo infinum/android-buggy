@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.infinum.buggy.sample.R
@@ -53,6 +54,11 @@ class RollingLoggerFragment : Fragment() {
     private fun setupButtons() {
         binding.apply {
             btnGenerateLogs.setOnClickListener {
+                Toast.makeText(
+                    requireContext(),
+                    "Random logs will be generated in the background",
+                    Toast.LENGTH_SHORT
+                ).show()
                 lifecycleScope.launch {
                     while (true) {
                         Timber.d("Debug test")
