@@ -15,19 +15,23 @@ class SampleApplication : Application() {
 
     @Suppress("MagicNumber")
     private fun setupTimber() {
-        val maxIndividualFileSize = 15 * 1024L
         val fileFactory = BuggyLimitedFileFactory(
             context = this,
-            maxTotalFileSizeBytes = 5 * maxIndividualFileSize,
+            maxTotalFileSizeBytes = MAX_TOTAL_FILE_SIZE,
         )
         val buggyFileRollingLogger = BuggyFileRollingLogger(
             fileFactory = fileFactory::createFile,
-            maxIndividualFileSizeBytes = maxIndividualFileSize,
+            maxIndividualFileSizeBytes = MAX_INDIVIDUAL_FILE_SIZE,
         )
 
         Timber.plant(
             DelegatorTimberTree(buggyFileRollingLogger::log),
         )
         Timber.plant(Timber.DebugTree())
+    }
+
+    companion object {
+        const val MAX_INDIVIDUAL_FILE_SIZE = 15 * 1024L // 15KB
+        const val MAX_TOTAL_FILE_SIZE = 5 * MAX_INDIVIDUAL_FILE_SIZE // 75KB
     }
 }
