@@ -16,6 +16,16 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel for reporting a problem example, see [ReportProblemFragment].
+ * Buggy is configured to export encrypted logs to zip file
+ * First step is to initialize Buggy with log files as [FileBuggyResource].
+ * Then, Buggy is configured with [ZipBuggyResourceProcessor] and [EncryptionBuggyResourceProcessor].
+ * [ZipBuggyResourceProcessor] zips all resources (logs) into zip file
+ * [EncryptionBuggyResourceProcessor] encrypts all resources using AES secret key, then encrypts secret key (used for AES encryption) using RSA public key
+ * When user clicks on button, the report is generated and exported to zip file because of [ZipBuggyExporter].
+ * All files are written to internal storage. That is why context is needed.
+ */
 @Suppress("MagicNumber", "LateinitUsage")
 class ReportProblemViewModel : ViewModel() {
 

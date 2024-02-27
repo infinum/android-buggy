@@ -13,6 +13,9 @@ class SampleApplication : Application() {
         setupTimber()
     }
 
+    // Sets up Timber with BuggyFileRollingLogger and DelegatorTimberTree
+    // DelegatorTimberTree is used to delegate logs to BuggyFileRollingLogger
+    // BuggyFileRollingLogger is used to log to files and rotate them when exceeding size limit
     @Suppress("MagicNumber")
     private fun setupTimber() {
         val fileFactory = BuggyLimitedFileFactory(
