@@ -6,11 +6,18 @@ import androidx.lifecycle.viewModelScope
 import com.infinum.buggy.Buggy
 import com.infinum.buggy.exporters.ZipBuggyExporter
 import com.infinum.buggy.resources.TextBuggyResource
+import java.io.File
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import java.io.File
 
+/**
+ * ViewModel for plain text report example, see [PlainExportFragment].
+ * Buggy is configured to export plain text to zip file.
+ * First step is to initialize Buggy with plain text as [TextBuggyResource].
+ * When user clicks on button, the report is generated and exported to zip file because of [ZipBuggyExporter].
+ * All files are written to internal storage. That is why context is needed.
+ */
 class PlainExportViewModel : ViewModel() {
 
     private val _events = Channel<PlainExportEvent>()
@@ -29,7 +36,7 @@ class PlainExportViewModel : ViewModel() {
         buggy.export(
             ZipBuggyExporter(
                 file = report,
-            )
+            ),
         )
 
         _events.send(PlainExportEvent.ReportGenerated(report))
@@ -39,5 +46,4 @@ class PlainExportViewModel : ViewModel() {
         Buggy.Builder()
             .add(TextBuggyResource(text = text ?: "", name = "plain-export.txt"))
             .build()
-
 }

@@ -15,11 +15,16 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.infinum.buggy.sample.databinding.FragmentPlainExportBinding
+import java.io.File
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import java.io.File
 
+/**
+ * Example for generating plain text report.
+ * Report is generated from plain text input to zip file.
+ * Report then can be shared.
+ */
 class PlainExportFragment : Fragment() {
 
     private var _binding: FragmentPlainExportBinding? = null
@@ -53,7 +58,7 @@ class PlainExportFragment : Fragment() {
             btnSubmit.setOnClickListener {
                 viewModel.onExport(
                     input.text?.toString(),
-                    requireContext()
+                    requireContext(),
                 )
             }
             input.addTextChangedListener(object : TextWatcher {
