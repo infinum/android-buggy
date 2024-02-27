@@ -1,4 +1,4 @@
-package com.infinum.buggy.sample.encryptDecrypt
+package com.infinum.buggy.sample.decrypt
 
 import java.io.File
 

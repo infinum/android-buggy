@@ -1,4 +1,4 @@
-package com.infinum.buggy.sample.encryptDecrypt
+package com.infinum.buggy.sample.decrypt
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

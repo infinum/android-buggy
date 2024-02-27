@@ -7,6 +7,6 @@
 
     <fragment
         android:id="@+id/encryptDecryptFragment"
-        android:name="com.infinum.buggy.sample.encryptDecrypt.EncryptDecryptFragment"
+        android:name="com.infinum.buggy.sample.decrypt.EncryptDecryptFragment"
         tools:layout="@layout/fragment_encrypt_decrypt" />
 </navigation>

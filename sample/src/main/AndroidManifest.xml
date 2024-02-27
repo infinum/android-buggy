@@ -25,7 +25,7 @@
 
         <activity android:name=".logs.RollingLoggerActivity" />
 
-        <activity android:name=".encryptDecrypt.EncryptDecryptActivity"/>
+        <activity android:name=".decrypt.EncryptDecryptActivity"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

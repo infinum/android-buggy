@@ -1,6 +1,6 @@
 @file:Suppress("ImportOrdering")
 
-package com.infinum.buggy.sample.encryptDecrypt
+package com.infinum.buggy.sample.decrypt
 
 import android.content.Context
 import android.content.Intent
