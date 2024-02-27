@@ -14,6 +14,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
+/**
+ * Fragment that used to generate logs and exceptions for testing purposes.
+ * Since BuggyRollingFileLogger is used, logs will be written to files, check [SampleApplication]
+ */
 class RollingLoggerFragment : Fragment() {
 
     private var _binding: FragmentRollingLoggerBinding? = null

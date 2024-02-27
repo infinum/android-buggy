@@ -27,6 +27,25 @@ import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
+/**
+ * ViewModel for generating encrypted report and decrypting the same report example, see [EncryptDecryptFragment].
+ * Buggy is configured to export encrypted logs to zip file and send it to mail.
+ * First step is to initialize Buggy with log files as [FileBuggyResource].
+ * Then, Buggy is configured with [ZipBuggyResourceProcessor] and [EncryptionBuggyResourceProcessor].
+ * [ZipBuggyResourceProcessor] zips all resources (logs) into zip file
+ * [EncryptionBuggyResourceProcessor] encrypts all resources using AES secret key, then encrypts secret key (used for AES encryption) using RSA public key
+ * When user clicks on button, the report is generated and exported to zip file because of [ZipBuggyExporter].
+ *
+ * When user clicks on decrypt button, the report is decrypted and shared.
+ * Process is as follows:
+ * 1. Unzip report, extract encrypted secret key and encrypted resources
+ * 2. Decrypt secret key (for AES) using private key from key pair (RSA)
+ * 3. Decrypt resources using decrypted secret key (AES)
+ * 4. Write decrypted resources to file
+ * 5. Share decrypted report
+ *
+ * All files are written to internal storage. That is why context is needed.
+ */
 class EncryptDecryptViewModel : ViewModel() {
 
     private val _events = Channel<EncryptDecryptEvent>()
