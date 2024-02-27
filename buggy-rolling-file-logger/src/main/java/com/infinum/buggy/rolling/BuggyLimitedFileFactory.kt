@@ -15,6 +15,7 @@ private val DATE_TIME_FORMATTER = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale
 
 /**
  * Factory for creating log files with a limit on the total size of the files.
+ * Files are stored in the application's internal storage.
  *
  * @param context Application context.
  * @property maxTotalFileSizeBytes Maximum size of all log files in bytes.
@@ -35,6 +36,15 @@ class BuggyLimitedFileFactory(
 
     private fun totalLogSize() = files.sumOf { it.length() }
 
+    /**
+     * Creates a new log file in the application's internal storage.
+     * If the total size of all log files exceeds or it is equal to [maxTotalFileSizeBytes], the oldest files are deleted until there is enough space.
+     * Therefor rolling effect is achieved.
+     *
+     * @param neededSpace Minimum space needed for the new file.
+     * @return New log file.
+     * @throws RuntimeException If the file cannot be created.
+     */
     @Throws(RuntimeException::class)
     fun createFile(neededSpace: Long = DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES): File {
         if (totalLogSize() >= maxTotalFileSizeBytes) {
@@ -50,6 +60,9 @@ class BuggyLimitedFileFactory(
         return path
     }
 
+    /**
+     * Frees up space by deleting the oldest files until the total size of all files is less than [maxTotalFileSizeBytes] - [requestedSize].
+     */
     private fun freeUpTheSpace(requestedSize: Long) {
         files.sortedBy { it.lastModified() }.forEach { file ->
             val currentTotalSize = totalLogSize()
@@ -60,6 +73,9 @@ class BuggyLimitedFileFactory(
     }
 
     companion object {
+        /**
+         * Default log file name factory that uses current date and time and [DEFAULT_LOG_FILE_EXTENSION]
+         */
         private fun dateTimeFileName(): String =
             DATE_TIME_FORMATTER.format(Date()) + DEFAULT_LOG_FILE_EXTENSION
     }
