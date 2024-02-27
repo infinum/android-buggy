@@ -90,23 +90,29 @@ class EncryptDecryptViewModel : ViewModel() {
     }
 
     // Don't pass context to view model in real app this way, this is just for the sake of the example
-    fun onDecryptReport(report: File, context: Context) {
-        // unzip reports
-        // zip should contain encrypted key and encrypted resources (based on process we used for generating report)
-        // resources are encrypted using AES and key (for resources) is encrypted using RSA
-        val (keyFile, encryptedResources) = unzipReport(report, context)
+    fun onDecryptReport(report: File, context: Context) = viewModelScope.launch {
+        try {
+            // unzip reports
+            // zip should contain encrypted key and encrypted resources (based on process we used for generating report)
+            // resources are encrypted using AES and key (for resources) is encrypted using RSA
+            val (encryptedKeyFile, encryptedResourcesFiles) = unzipReport(report, context)
 
-        // decrypt key using private key from key pair
-        val (iv, key) = decryptKey(keyFile, keyPair.private)
+            // decrypt key using private key from key pair
+            val (iv, key) = decryptKey(encryptedKeyFile, keyPair.private)
 
-        val dir = File(context.filesDir, "buggy-reports")
-        val decryptedReport = File(dir, "decrypted-buggy-report.zip").apply {
-            parentFile?.mkdirs()
-            createNewFile()
+            // create file for decrypted report
+            val dir = File(context.filesDir, "buggy-reports")
+            val decryptedReport = File(dir, "decrypted-buggy-report.zip").apply {
+                parentFile?.mkdirs()
+                createNewFile()
+            }
+
+            // decrypt resources using decrypted key
+            decryptResources(encryptedResourcesFiles, key, iv, decryptedReport)
+        } catch (e: Exception) {
+            Timber.e(e)
+            _events.send(EncryptDecryptEvent.DecryptReportFailed)
         }
-
-        // decrypt resources using decrypted key
-        decryptResources(encryptedResources, key, iv, decryptedReport)
     }
 
     private fun unzipReport(
@@ -118,13 +124,7 @@ class EncryptDecryptViewModel : ViewModel() {
         ZipFile(report).use { zip ->
             zip.entries().asSequence().first { it.name == ".key.der" }.let { entry ->
 
-                // todo check if createTempFile is better
-                val dir = File(context.filesDir, "buggy-reports")
-                keyFile = File(dir, "keyResource").apply {
-                    parentFile?.mkdirs()
-                    createNewFile()
-                }
-
+                keyFile = kotlin.io.path.createTempFile(prefix = "key-").toFile()
                 Files.copy(
                     zip.getInputStream(entry),
                     keyFile.toPath(),
@@ -136,11 +136,8 @@ class EncryptDecryptViewModel : ViewModel() {
                 zip.entries().asSequence().filter { it.name != ".key.der" }.associateBy { it.name }
                     .map {
                         Timber.d("Unzipping resource: ${it.key}")
-                        val dir = File(context.filesDir, "buggy-reports")
-                        val tempFile = File(dir, "encryptedResources-${it.key}").apply {
-                            parentFile?.mkdirs()
-                            createNewFile()
-                        }
+                        
+                        val tempFile = kotlin.io.path.createTempFile(prefix = "key-").toFile()
                         Files.copy(
                             zip.getInputStream(it.value),
                             tempFile.toPath(),
