@@ -1,3 +1,5 @@
+@file:Suppress("ImportOrdering")
+
 package com.infinum.buggy.sample.encryptDecrypt
 
 import android.content.Context
@@ -46,6 +48,7 @@ class EncryptDecryptFragment : Fragment() {
         }
     }
 
+    @Suppress("BracesOnWhenStatements")
     private fun handleEvent(event: EncryptDecryptEvent) {
         when (event) {
             is EncryptDecryptEvent.ReportGenerated -> {
@@ -67,10 +70,9 @@ class EncryptDecryptFragment : Fragment() {
                 Toast.makeText(
                     requireContext(),
                     "Failed to decrypt report, make sure to regenerate encrypted report",
-                    Toast.LENGTH_LONG
+                    Toast.LENGTH_LONG,
                 )
                     .show()
-
             }
         }
     }

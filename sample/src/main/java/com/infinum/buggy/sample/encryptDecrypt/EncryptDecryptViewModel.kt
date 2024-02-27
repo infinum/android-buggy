@@ -1,3 +1,5 @@
+@file:Suppress("ImportOrdering")
+
 package com.infinum.buggy.sample.encryptDecrypt
 
 import android.content.Context
@@ -7,15 +9,12 @@ import com.infinum.buggy.Buggy
 import com.infinum.buggy.exporters.ZipBuggyExporter
 import com.infinum.buggy.processors.EncryptionBuggyResourceProcessor
 import com.infinum.buggy.processors.ZipBuggyResourceProcessor
-import com.infinum.buggy.resources.EncryptedBuggyResource
 import com.infinum.buggy.resources.FileBuggyResource
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.InputStream
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 import java.security.KeyPair
@@ -23,7 +22,6 @@ import java.security.KeyPairGenerator
 import java.security.PrivateKey
 import java.util.zip.ZipFile
 import javax.crypto.Cipher
-import javax.crypto.CipherInputStream
 import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
@@ -95,7 +93,7 @@ class EncryptDecryptViewModel : ViewModel() {
             // unzip reports
             // zip should contain encrypted key and encrypted resources (based on process we used for generating report)
             // resources are encrypted using AES and key (for resources) is encrypted using RSA
-            val (encryptedKeyFile, encryptedResourcesFiles) = unzipReport(report, context)
+            val (encryptedKeyFile, encryptedResourcesFiles) = unzipReport(report)
 
             // decrypt key using private key from key pair
             val (iv, key) = decryptKey(encryptedKeyFile, keyPair.private)
@@ -119,21 +117,19 @@ class EncryptDecryptViewModel : ViewModel() {
 
     private fun unzipReport(
         report: File,
-        context: Context
     ): Pair<File, List<File>> {
         var keyFile: File
         var encryptedResources: List<File>
         ZipFile(report).use { zip ->
             zip.entries().asSequence().first { it.name == ".key.der" }.let { entry ->
-
                 keyFile = kotlin.io.path.createTempFile(prefix = "key-").toFile()
                 Files.copy(
                     zip.getInputStream(entry),
                     keyFile.toPath(),
-                    StandardCopyOption.REPLACE_EXISTING
+                    StandardCopyOption.REPLACE_EXISTING,
                 )
-
             }
+
             encryptedResources =
                 zip.entries().asSequence().filter { it.name != ".key.der" }.associateBy { it.name }
                     .map {
@@ -143,7 +139,7 @@ class EncryptDecryptViewModel : ViewModel() {
                         Files.copy(
                             zip.getInputStream(it.value),
                             tempFile.toPath(),
-                            StandardCopyOption.REPLACE_EXISTING
+                            StandardCopyOption.REPLACE_EXISTING,
                         )
                         tempFile
                     }
@@ -151,9 +147,10 @@ class EncryptDecryptViewModel : ViewModel() {
         return Pair(keyFile, encryptedResources)
     }
 
+    @Suppress("MagicNumber")
     private fun decryptKey(
         keyFile: File,
-        privateKey: PrivateKey
+        privateKey: PrivateKey,
     ): Pair<IvParameterSpec, SecretKey> {
         val keyBytes = Files.readAllBytes(keyFile.toPath())
         val cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding").apply {
@@ -184,4 +181,3 @@ class EncryptDecryptViewModel : ViewModel() {
         Files.write(decryptedReport.toPath(), decryptedContent)
     }
 }
-

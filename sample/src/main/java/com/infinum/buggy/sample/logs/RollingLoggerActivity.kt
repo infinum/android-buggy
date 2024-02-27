@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.infinum.buggy.sample.databinding.ActivityRollingLoggerBinding
 
-class RollingLoggerActivity: AppCompatActivity() {
+class RollingLoggerActivity : AppCompatActivity() {
     @Suppress("LateinitUsage")
     private lateinit var viewBinding: ActivityRollingLoggerBinding
     override fun onCreate(savedInstanceState: Bundle?) {

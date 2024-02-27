@@ -35,29 +35,30 @@ class RollingLoggerFragment : Fragment() {
         setupButtons()
     }
 
-    @Suppress("KotlinConstantConditions")
+    @Suppress("KotlinConstantConditions", "MagicNumber")
     private fun setupText() {
         val totalMaxSize = SampleApplication.MAX_TOTAL_FILE_SIZE / (1024 * 1024) // MB
         if (totalMaxSize > 1) {
             binding.tvRollingLogger.text = getString(
                 R.string.max_size_of_logs_mb,
-                totalMaxSize
+                totalMaxSize,
             )
         } else {
             binding.tvRollingLogger.text = getString(
                 R.string.max_size_of_logs_kb,
-                SampleApplication.MAX_TOTAL_FILE_SIZE / 1024
+                SampleApplication.MAX_TOTAL_FILE_SIZE / 1024,
             )
         }
     }
 
+    @Suppress("TooGenericExceptionThrown", "MagicNumber")
     private fun setupButtons() {
         binding.apply {
             btnGenerateLogs.setOnClickListener {
                 Toast.makeText(
                     requireContext(),
                     "Random logs will be generated in the background",
-                    Toast.LENGTH_SHORT
+                    Toast.LENGTH_SHORT,
                 ).show()
                 lifecycleScope.launch {
                     while (true) {
