@@ -10,6 +10,7 @@ import com.infinum.buggy.exporters.ZipBuggyExporter
 import com.infinum.buggy.processors.EncryptionBuggyResourceProcessor
 import com.infinum.buggy.processors.ZipBuggyResourceProcessor
 import com.infinum.buggy.resources.FileBuggyResource
+import kotlin.io.path.createTempFile
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -122,7 +123,7 @@ class EncryptDecryptViewModel : ViewModel() {
         var encryptedResources: List<File>
         ZipFile(report).use { zip ->
             zip.entries().asSequence().first { it.name == ".key.der" }.let { entry ->
-                keyFile = kotlin.io.path.createTempFile(prefix = "key-").toFile()
+                keyFile = createTempFile(prefix = "key-").toFile()
                 Files.copy(
                     zip.getInputStream(entry),
                     keyFile.toPath(),
@@ -135,7 +136,7 @@ class EncryptDecryptViewModel : ViewModel() {
                     .map {
                         Timber.d("Unzipping resource: ${it.key}")
 
-                        val tempFile = kotlin.io.path.createTempFile(prefix = "key-").toFile()
+                        val tempFile = createTempFile(prefix = "key-").toFile()
                         Files.copy(
                             zip.getInputStream(it.value),
                             tempFile.toPath(),
