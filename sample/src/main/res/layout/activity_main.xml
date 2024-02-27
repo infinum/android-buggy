@@ -16,19 +16,27 @@
         android:text="@string/report_problem_with_ui" />
 
     <Button
+        android:id="@+id/encryptDecryptButton"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/test_logs_encryption_decryption" />
+
+    <Button
+        android:id="@+id/plainTextExportButton"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/plain_text_export" />
+
+    <Button
         android:id="@+id/logsButton"
         android:layout_margin="16dp"
         android:padding="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/start_logs" />
-
-    <Button
-        android:id="@+id/exceptionButton"
-        android:layout_margin="16dp"
-        android:padding="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/exception" />
+        android:text="@string/rolling_logger" />
 
 </LinearLayout>

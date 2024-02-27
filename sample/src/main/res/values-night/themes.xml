@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.Androidlibrarytemplate" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
+        <item name="colorPrimary">@color/infinum_red</item>
+        <item name="colorPrimaryDark">@color/infinum_red_dark</item>
+        <item name="colorAccent">@color/dark_green</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

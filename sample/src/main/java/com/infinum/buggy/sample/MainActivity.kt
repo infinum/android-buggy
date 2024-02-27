@@ -3,13 +3,20 @@ package com.infinum.buggy.sample
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.infinum.buggy.sample.databinding.ActivityMainBinding
+import com.infinum.buggy.sample.decrypt.EncryptDecryptActivity
+import com.infinum.buggy.sample.logs.RollingLoggerActivity
 import com.infinum.buggy.sample.report.ReportProblemActivity
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import timber.log.Timber
 
+/**
+ * Main activity of the sample app.
+ * Contains buttons for navigating to other activities/examples.
+ * Examples:
+ * 1. Report problem - represents standard use case for library - generate report base on log files and send it to mail
+ * 2. Encrypt/Decrypt - example of us encrypting and decrypting report (logs in example)
+ * 3. Plain text export - example of exporting logs in plain text with Buggy
+ * 4. Logs - example for generating logs using Timber and rolling logger (logs are saved in files and are rotated when exceeding size limit)
+ */
 class MainActivity : AppCompatActivity() {
 
     @Suppress("LateinitUsage")
@@ -26,33 +33,25 @@ class MainActivity : AppCompatActivity() {
     @Suppress("MagicNumber")
     private fun setupButtons() {
         viewBinding.apply {
-            // todo move this to a separate screen (RollingLoggerActivity)
-            exceptionButton.setOnClickListener {
-                lifecycleScope.launch {
-                    val exception = RuntimeException("Test")
-                    Timber.e(exception)
-                    throw exception
-                }
-            }
-
-            logsButton.setOnClickListener {
-                lifecycleScope.launch {
-                    while (true) {
-                        Timber.d("Debug test")
-                        delay(100)
-                        Timber.e("Error test")
-                        delay(200)
-                    }
-                }
-            }
-
+            // represents standard use case for library (generate report and send it)
             reportButton.setOnClickListener {
                 val intent = Intent(this@MainActivity, ReportProblemActivity::class.java)
                 startActivity(intent)
             }
 
-            // todo add plain export
-            // todo add option for exporting encrypted logs and decryption of logs
+            encryptDecryptButton.setOnClickListener {
+                val intent = Intent(this@MainActivity, EncryptDecryptActivity::class.java)
+                startActivity(intent)
+            }
+
+            plainTextExportButton.setOnClickListener {
+                // todo
+            }
+
+            logsButton.setOnClickListener {
+                val intent = Intent(this@MainActivity, RollingLoggerActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }

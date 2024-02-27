@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <queries/>
+    <queries />
 
     <application
         android:name=".SampleApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher" android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true" android:theme="@style/Theme.BuggySampleTheme">
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BuggySampleTheme">
         <activity
             android:name="com.infinum.buggy.sample.MainActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".report.ReportProblemActivity"/>
+        <activity android:name=".report.ReportProblemActivity" />
+
+        <activity android:name=".logs.RollingLoggerActivity" />
+
+        <activity android:name=".decrypt.EncryptDecryptActivity"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
