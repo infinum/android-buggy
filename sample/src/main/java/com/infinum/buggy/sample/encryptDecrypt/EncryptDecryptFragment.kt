@@ -62,8 +62,10 @@ class EncryptDecryptFragment : Fragment() {
             }
 
             btnDecryptReport.setOnClickListener {
-                val getEncryptedReport = File(requireContext().filesDir, "buggy-reports/buggy-report.zip")
-                viewModel.onDecryptReport(getEncryptedReport)
+                // assumption here is that encrypted report exists at this path
+                val encryptedReport =
+                    File(requireContext().filesDir, "buggy-reports/encrypted-buggy-report.zip")
+                viewModel.onDecryptReport(encryptedReport, requireContext())
             }
         }
     }
