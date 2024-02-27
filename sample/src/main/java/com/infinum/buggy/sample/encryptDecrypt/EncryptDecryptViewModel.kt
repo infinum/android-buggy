@@ -109,6 +109,8 @@ class EncryptDecryptViewModel : ViewModel() {
 
             // decrypt resources using decrypted key
             decryptResources(encryptedResourcesFiles, key, iv, decryptedReport)
+
+            _events.send(EncryptDecryptEvent.DecryptReport(decryptedReport))
         } catch (e: Exception) {
             Timber.e(e)
             _events.send(EncryptDecryptEvent.DecryptReportFailed)
@@ -136,7 +138,7 @@ class EncryptDecryptViewModel : ViewModel() {
                 zip.entries().asSequence().filter { it.name != ".key.der" }.associateBy { it.name }
                     .map {
                         Timber.d("Unzipping resource: ${it.key}")
-                        
+
                         val tempFile = kotlin.io.path.createTempFile(prefix = "key-").toFile()
                         Files.copy(
                             zip.getInputStream(it.value),

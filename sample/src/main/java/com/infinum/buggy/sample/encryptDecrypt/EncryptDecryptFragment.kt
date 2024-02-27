@@ -1,10 +1,14 @@
 package com.infinum.buggy.sample.encryptDecrypt
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -49,10 +53,33 @@ class EncryptDecryptFragment : Fragment() {
             }
 
             is EncryptDecryptEvent.DecryptReport -> {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_STREAM, getUri(requireContext(), event.file))
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
+            }
+
+            is EncryptDecryptEvent.DecryptReportFailed -> {
+                Toast.makeText(
+                    requireContext(),
+                    "Failed to decrypt report, make sure to regenerate encrypted report",
+                    Toast.LENGTH_LONG
+                )
+                    .show()
 
             }
         }
     }
+
+    private fun getUri(context: Context, file: File): Uri = FileProvider.getUriForFile(
+        context,
+        context.packageName + ".provider",
+        file,
+    )
 
     private fun setupButtons() {
         binding.apply {
