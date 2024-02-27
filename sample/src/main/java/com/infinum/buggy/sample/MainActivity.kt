@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.infinum.buggy.sample.databinding.ActivityMainBinding
-import com.infinum.buggy.sample.encryptDecrypt.EncryptDecryptActivity
+import com.infinum.buggy.sample.decrypt.EncryptDecryptActivity
 import com.infinum.buggy.sample.logs.RollingLoggerActivity
 import com.infinum.buggy.sample.report.ReportProblemActivity
 
