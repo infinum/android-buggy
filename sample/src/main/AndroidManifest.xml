@@ -25,6 +25,8 @@
 
         <activity android:name=".logs.RollingLoggerActivity" />
 
+        <activity android:name=".plain.export.PlainExportActivity" />
+
         <activity android:name=".decrypt.EncryptDecryptActivity"/>
 
         <provider

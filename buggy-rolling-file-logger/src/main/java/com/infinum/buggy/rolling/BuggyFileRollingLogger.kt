@@ -8,6 +8,7 @@ import java.util.concurrent.Executors
 
 /**
  * Logger that writes into files and limits the size of individual log files.
+ * When the size of the log file exceeds the maximum size, new file is created with help from [fileFactory] and [BuggyFileWriter].
  *
  * @property maxIndividualFileSizeBytes Maximum size of individual log file in bytes.
  * @property onFileOpened Callback that is called when new log file is opened.

@@ -76,11 +76,7 @@ class ReportProblemFragment : Fragment() {
                     Unit
 
                 override fun afterTextChanged(s: Editable?) {
-                    if (s?.isNotEmpty() == true) {
-                        btnSubmit.isEnabled = true
-                    } else {
-                        btnSubmit.isEnabled = false
-                    }
+                    btnSubmit.isEnabled = s?.isNotEmpty() == true
                 }
             })
         }

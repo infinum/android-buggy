@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.infinum.buggy.sample.databinding.ActivityMainBinding
 import com.infinum.buggy.sample.decrypt.EncryptDecryptActivity
 import com.infinum.buggy.sample.logs.RollingLoggerActivity
+import com.infinum.buggy.sample.plain.export.PlainExportActivity
 import com.infinum.buggy.sample.report.ReportProblemActivity
 
 /**
@@ -45,7 +46,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             plainTextExportButton.setOnClickListener {
-                // todo
+                val intent = Intent(this@MainActivity, PlainExportActivity::class.java)
+                startActivity(intent)
             }
 
             logsButton.setOnClickListener {

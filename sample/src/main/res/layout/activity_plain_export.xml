@@ -7,11 +7,11 @@
     tools:context=".report.ReportProblemActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/rollingLoggerNavHost"
+        android:id="@+id/plainExportNavHost"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/rolling_logger_nav_graph" />
+        app:navGraph="@navigation/plain_export_nav_graph" />
 
 </FrameLayout>
