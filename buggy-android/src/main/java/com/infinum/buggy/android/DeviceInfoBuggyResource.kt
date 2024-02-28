@@ -4,6 +4,12 @@ import android.os.Build
 import com.infinum.buggy.BuggyResource
 import java.io.InputStream
 
+/**
+ * Buggy resource that provides information about the device.
+ * It includes manufacturer, brand, model, device , OS version, among other things.
+ *
+ * @property name Name of the resource. Default value is "device-info.json".
+ */
 class DeviceInfoBuggyResource(
     override val name: String = "device-info.json",
 ) : BuggyResource {

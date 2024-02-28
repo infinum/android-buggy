@@ -7,6 +7,13 @@ import android.os.Build
 import com.infinum.buggy.BuggyResource
 import java.io.InputStream
 
+/**
+ * Buggy resource that provides information about the application.
+ * It includes package name, version name, version code, first install time, last update time, among other things.
+ *
+ * @param context Context of the application.
+ * @property name Name of the resource. Default value is "application-info.json".
+ */
 class ApplicationInfoBuggyResource(
     context: Context,
     override val name: String = "application-info.json",
@@ -35,7 +42,10 @@ class ApplicationInfoBuggyResource(
 
     private fun getPackageInfo(): PackageInfo? = try {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            context.packageManager.getPackageInfo(context.packageName, PackageManager.PackageInfoFlags.of(0))
+            context.packageManager.getPackageInfo(
+                context.packageName,
+                PackageManager.PackageInfoFlags.of(0)
+            )
         } else {
             @Suppress("DEPRECATION")
             context.packageManager.getPackageInfo(context.packageName, 0)
