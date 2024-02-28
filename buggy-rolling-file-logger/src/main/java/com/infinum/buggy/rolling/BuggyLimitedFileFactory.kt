@@ -39,7 +39,7 @@ class BuggyLimitedFileFactory(
     /**
      * Creates a new log file in the application's internal storage.
      * If the total size of all log files exceeds or it is equal to [maxTotalFileSizeBytes], the oldest files are deleted until there is enough space.
-     * Therefor rolling effect is achieved.
+     * Therefore rolling effect is achieved.
      *
      * @param neededSpace Minimum space needed for the new file.
      * @return New log file.
