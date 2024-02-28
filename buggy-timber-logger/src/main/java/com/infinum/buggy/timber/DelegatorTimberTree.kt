@@ -4,7 +4,7 @@ import timber.log.Timber
 
 /**
  * Timber tree that can delegate logging to injected logger.
- * @param logger Function that logging will be delegated to when log() is called.
+ * @property logger Function that logging will be delegated to when log() is called.
  */
 class DelegatorTimberTree(
     private val logger: (priority: Int, tag: String?, message: String, t: Throwable?) -> Unit,
