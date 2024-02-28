@@ -83,6 +83,7 @@ class Buggy private constructor(
      *
      * val exportedFile = buggy.export(FileExporter())
      * ```
+     * The order in which the processors are added is important, as the processors are applied in the same order as they are added.
      */
     class Builder {
 
