@@ -6,7 +6,7 @@
 
 // Library logo (left wrap with title) //
 
-Android library for a simple resource (usually logs and debug data) exporting library that allows
+Android library for a simple resource (usually logs and debug data) exporting. It allows
 you to add, remove and process resources before the export.
 
 The project is organized in the following modules:
@@ -83,6 +83,8 @@ Don't forget to sync your project.
 To use the library, you have to initialize it with Builder. You can add resources (for example log
 files) and processors (for example `EncryptionBuggyResourceProcessor`) to the builder and then build
 it.
+It is important to note that **order of adding processors matters**. In the order they are added,
+they will be applied to the resources when exporting.
 The builder will return a `Buggy` instance which you can use to export resources.
 
 ```kotlin
@@ -97,10 +99,9 @@ Buggy.Builder()
     .build()
 ```
 
+
 To use the `Buggy` instance, you can call the `export` method with a `Exporter` instance. Then
 library will export all resources processed by defined processors with exporter defined strategy.
-It is important to note that **order of adding processors matters**. In the order they are added,
-they are applied to the resources when exporting.
 Example of exporting resources to a zip file:
 
 ```kotlin
@@ -117,8 +118,9 @@ Check the [sample app](sample) for more detailed examples.
 
 Library also provides different modules for specific use cases.
 
-`buggy-android` module provides `BuggyResource` implementations for Android specific details about
-device and app.
+
+`buggy-android` module provides, among other things, `BuggyResource` implementations for Android
+specific details about device and app.
 
 ```kotlin
 Buggy.Builder()
@@ -127,7 +129,8 @@ Buggy.Builder()
     .build()
 ```
 
-`buggy-rolling-file-logger` module provides a `RollingFileLogger` which can be used to write logs to
+
+`buggy-rolling-file-logger` module provides a `BuggyFileRollingLogger` which can be used to write logs to
 files with a rolling strategy.
 
 ```kotlin 
@@ -140,6 +143,7 @@ val buggyFileRollingLogger = BuggyFileRollingLogger(
     maxIndividualFileSizeBytes = 10 * 1024 * 1024,
 )
 ```
+
 
 `buggy-timber` module provides a Timber tree in which custom loggers can be injected. Example for
 rolling file logger with Timber tree:
