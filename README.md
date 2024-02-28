@@ -99,6 +99,8 @@ Buggy.Builder()
 
 To use the `Buggy` instance, you can call the `export` method with a `Exporter` instance. Then
 library will export all resources processed by defined processors with exporter defined strategy.
+It is important to note that **order of adding processors matters**. In the order they are added,
+they are applied to the resources when exporting.
 Example of exporting resources to a zip file:
 
 ```kotlin
@@ -109,8 +111,14 @@ buggy.export(
 )
 ```
 
-Additional modules provide additional functionality. For example, `buggy-android` module provides
-`BuggyResource` implementations for Android specific details about device and app.
+Check the [sample app](sample) for more detailed examples.
+
+### Specific usage info
+
+Library also provides different modules for specific use cases.
+
+`buggy-android` module provides `BuggyResource` implementations for Android specific details about
+device and app.
 
 ```kotlin
 Buggy.Builder()
@@ -133,25 +141,14 @@ val buggyFileRollingLogger = BuggyFileRollingLogger(
 )
 ```
 
-`buggy-timber` module provides a Timber tree in which custom loggers can be injected.
+`buggy-timber` module provides a Timber tree in which custom loggers can be injected. Example for
+rolling file logger with Timber tree:
 
 ```kotlin
 Timber.plant(
     DelegatorTimberTree(buggyFileRollingLogger::log),
 )
 ```
-
-Check the [sample app](sample) for more detailed examples.
-
-### // OPTIONAL: Configuration //
-
-// How to further configure the library, list any additional options //
-
-### // OPTIONAL: Specific usage info //
-
-// Depending on the complexity of the library, you might have one or more sections where you explain
-specific use-cases which do not fall under "basic" usage. You **should not** cover the whole API
-here, just some of the more common usages of the library. //
 
 ## Requirements
 
