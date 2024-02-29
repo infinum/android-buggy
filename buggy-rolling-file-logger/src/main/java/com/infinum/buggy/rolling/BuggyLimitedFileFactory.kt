@@ -72,6 +72,9 @@ class BuggyLimitedFileFactory(
         }
     }
 
+    /**
+     * Companion object with default log file name factory.
+     */
     companion object {
         /**
          * Default log file name factory that uses current date and time and [DEFAULT_LOG_FILE_EXTENSION]

@@ -21,6 +21,9 @@ class ApplicationInfoBuggyResource(
 
     private val context = context.applicationContext
 
+    /**
+     * Opens the resource's stream.
+     */
     override fun openStream(): InputStream {
         val packageInfo = getPackageInfo()
         return JsonBuggyResource(name).update {

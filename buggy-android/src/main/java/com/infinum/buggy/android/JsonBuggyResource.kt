@@ -16,9 +16,21 @@ class JsonBuggyResource(
 
     private val data = JSONObject()
 
+    /**
+     * Updates the resource with the provided JSON object.
+     *
+     * @param block the JSON object to update the resource with
+     * @return the updated resource
+     */
     fun update(block: JSONObject.() -> Unit) = apply {
         data.block()
     }
 
-    override fun openStream(): InputStream = data.toString(2).byteInputStream(StandardCharsets.UTF_8)
+    /**
+     * Opens the resource's stream.
+     *
+     * @return the resource's stream
+     */
+    override fun openStream(): InputStream =
+        data.toString(2).byteInputStream(StandardCharsets.UTF_8)
 }
