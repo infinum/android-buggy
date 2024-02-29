@@ -83,8 +83,8 @@ Don't forget to sync your project.
 To use the library, you have to initialize it with Builder. You can add resources (for example log
 files) and processors (for example `EncryptionBuggyResourceProcessor`) to the builder and then build
 it.
-It is important to note that **order of adding processors matters**. In the order they are added,
-they will be applied to the resources when exporting.
+It is important to note that **the order of adding processors is important**. They will be applied to resources in the same order in which they were added when exporting.
+
 The builder will return a `Buggy` instance which you can use to export resources.
 
 ```kotlin
