@@ -10,5 +10,6 @@
     <string name="plain_text_export">Plain text export</string>
     <string name="generate_encrypted_report">Generate encrypted report</string>
     <string name="decrypt_report">Decrypt Report</string>
+    <string name="open_latest_log">Open latest log</string>
 
 </resources>
