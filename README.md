@@ -1,4 +1,4 @@
-// Maven central / CI build badges / links (Github pages, wiki, etc.) //
+// Maven central / [![Build Status](https://app.bitrise.io/app/2f579e1f-5eb6-4bae-974c-3af8b0ff2a4c/status.svg?token=YSdaK3xxLACRNQCFFbtuqA&branch=main)](https://app.bitrise.io/app/2f579e1f-5eb6-4bae-974c-3af8b0ff2a4c) / links (Github pages, wiki, etc.) //
 
 ### <img align="left" src="logo.svg" width="48">
 
@@ -154,6 +154,12 @@ Timber.plant(
 )
 ```
 
+## Publishing
+
+When publishing a new version of the library, disable Gradle parallel execution to avoid the issue of artefacts appearing in multiple repositories
+You can disable it in `gradle.properties`
+Or by running command with flag, ex: `./gradlew publishReleasePublicationToSonatypeMavenCentralRepository --no-parallel`
+
 ## Requirements
 
 Minimum supported Android version: API level 28 (Android 9.0)
@@ -162,10 +168,7 @@ Minimum supported Android version: API level 28 (Android 9.0)
 
 Feedback and code contributions are very much welcome. Just make a pull request with a short
 description of your changes. By making contributions to this project you give permission for your
-code to be used under the same [license](LICENSE).
-
-// Add any other info specific to contributing to this library (e.g., if you have a sample app to
-help with development) //
+code to be used under the same [license](LICENSE). For easier developing a [sample app](sample) with proper implementations is provided.
 
 ## License
 
