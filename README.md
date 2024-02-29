@@ -154,6 +154,12 @@ Timber.plant(
 )
 ```
 
+## Publishing
+
+When publishing a new version of the library, disable Gradle parallel execution to avoid the issue of artefacts appearing in multiple repositories
+You can disable it in `gradle.properties`
+Or by running command with flag, ex: `./gradlew publishReleasePublicationToSonatypeMavenCentralRepository --no-parallel`
+
 ## Requirements
 
 Minimum supported Android version: API level 28 (Android 9.0)
