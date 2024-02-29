@@ -8,7 +8,7 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
 /**
- * Exports the resources to a zip file.
+ * Exporter that exports the resources to a zip file.
  * @property file the file to be used for exporting report.
  * @property bufferSize the buffer size to be used when exporting the resources.
  */
