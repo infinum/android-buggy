@@ -100,7 +100,7 @@ Buggy.Builder()
 ```
 
 
-To use the `Buggy` instance, you can call the `export` method with a `Exporter` instance. Then
+To use the `Buggy` instance, you can call the `export` method with an `Exporter` instance. Then
 library will export all resources processed by defined processors with exporter defined strategy.
 Example of exporting resources to a zip file:
 
