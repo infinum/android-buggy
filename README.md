@@ -7,7 +7,7 @@
 // Library logo (left wrap with title) //
 
 An Android library for exporting simple resources (usually logs and debug data). It allows
-you to add, remove and process resources before the export.
+you to add, remove and process resources before an export.
 
 The project is organized in the following modules:
 
