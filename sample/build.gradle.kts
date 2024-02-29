@@ -76,6 +76,7 @@ dependencies {
 
     // todo improve to test published versions
     implementation(project(":buggy"))
+    implementation(project(":buggy-android"))
     implementation(project(":buggy-timber-logger"))
     implementation(project(":buggy-rolling-file-logger"))
 }
