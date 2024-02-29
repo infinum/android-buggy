@@ -1,4 +1,4 @@
-// Maven central / CI build badges / links (Github pages, wiki, etc.) //
+// Maven central / [![Build Status](https://app.bitrise.io/app/2f579e1f-5eb6-4bae-974c-3af8b0ff2a4c/status.svg?token=YSdaK3xxLACRNQCFFbtuqA&branch=main)](https://app.bitrise.io/app/2f579e1f-5eb6-4bae-974c-3af8b0ff2a4c) / links (Github pages, wiki, etc.) //
 
 ### <img align="left" src="logo.svg" width="48">
 
