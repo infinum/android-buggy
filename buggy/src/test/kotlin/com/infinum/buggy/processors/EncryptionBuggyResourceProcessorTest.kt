@@ -16,6 +16,7 @@ class EncryptionBuggyResourceProcessorTest {
 
     @Test
     fun `process returns encrypted resources and the key`() {
+        // Given
         val resources = listOf(
             TextBuggyResource("first.txt", "This is a test!"),
             TextBuggyResource("second.txt", "Hello, world!"),
@@ -27,8 +28,10 @@ class EncryptionBuggyResourceProcessorTest {
             resourceCipher = aesCipher()
         )
 
+        // When
         val output = processor.process(resources)
 
+        // Then
         val keyResource = output.first { it.name == ".key.der" }
         val encryptedResources = output.filter { it.name != ".key.der" }.associateBy { it.name }
 
@@ -47,6 +50,7 @@ class EncryptionBuggyResourceProcessorTest {
 
     @Test
     fun `process returns only the key when there is no resources`() {
+        // Given
         val resources = emptyList<BuggyResource>()
 
         val keyPair = generateKeyPair()
@@ -55,8 +59,10 @@ class EncryptionBuggyResourceProcessorTest {
             resourceCipher = aesCipher()
         )
 
+        // When
         val output = processor.process(resources)
 
+        // Then
         val keyResources = output.filter { it.name == ".key.der" }
         val encryptedResources = output.filter { it.name != ".key.der" }
 
