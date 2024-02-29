@@ -162,10 +162,7 @@ Minimum supported Android version: API level 28 (Android 9.0)
 
 Feedback and code contributions are very much welcome. Just make a pull request with a short
 description of your changes. By making contributions to this project you give permission for your
-code to be used under the same [license](LICENSE).
-
-// Add any other info specific to contributing to this library (e.g., if you have a sample app to
-help with development) //
+code to be used under the same [license](LICENSE). For easier developing a [sample app](sample) with proper implementations is provided.
 
 ## License
 
