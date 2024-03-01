@@ -1,3 +1,5 @@
+@file:Suppress("ImportOrdering")
+
 package com.infinum.buggy.sample.logs
 
 import android.os.Bundle
@@ -13,9 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.infinum.buggy.sample.R
 import com.infinum.buggy.sample.SampleApplication
 import com.infinum.buggy.sample.databinding.FragmentRollingLoggerBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -63,11 +62,12 @@ class RollingLoggerFragment : Fragment() {
             recyclerView.layoutManager = LinearLayoutManager(
                 recyclerView.context,
                 LinearLayoutManager.VERTICAL,
-                false
+                false,
             )
         }
     }
 
+    @Suppress("BracesOnWhenStatements")
     private fun handleEvent(events: RollingLoggerEvents) {
         when (events) {
             is RollingLoggerEvents.LogsStarted -> {

@@ -13,6 +13,7 @@ class RollingLoggerViewModel : ViewModel() {
     private val _events = Channel<RollingLoggerEvents>()
     val events = _events.receiveAsFlow()
 
+    @Suppress("MagicNumber")
     fun onGenerateLogsClicked() = viewModelScope.launch {
         _events.send(RollingLoggerEvents.LogsStarted)
         while (true) {
