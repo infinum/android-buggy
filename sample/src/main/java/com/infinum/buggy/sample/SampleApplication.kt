@@ -3,6 +3,7 @@ package com.infinum.buggy.sample
 import android.app.Application
 import com.infinum.buggy.android.ApplicationInfoBuggyResource
 import com.infinum.buggy.android.DeviceInfoBuggyResource
+import com.infinum.buggy.resources.write
 import com.infinum.buggy.rolling.BuggyFileRollingLogger
 import com.infinum.buggy.rolling.BuggyLimitedFileFactory
 import com.infinum.buggy.timber.DelegatorTimberTree
@@ -31,11 +32,13 @@ class SampleApplication : Application() {
             fileFactory = fileFactory::createFile,
             maxIndividualFileSizeBytes = MAX_INDIVIDUAL_FILE_SIZE,
             onFileOpened = { writer ->
-                writer.write(appInfo.openStream().readBytes().toString(Charsets.UTF_8))
-                writer.newLine()
+                with(writer) {
+                    write(appInfo)
+                    newLine()
 
-                writer.write(deviceInfo.openStream().readBytes().toString(Charsets.UTF_8))
-                writer.newLine()
+                    write(deviceInfo)
+                    newLine()
+                }
             },
         )
 
