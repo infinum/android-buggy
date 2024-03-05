@@ -1,6 +1,8 @@
 package com.infinum.buggy.resources
 
+import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
 
 class BytesBuggyResourceTest {
 
@@ -13,7 +15,7 @@ class BytesBuggyResourceTest {
         val resource = BytesBuggyResource("bytes", bytes)
 
         // Then
-        assert(resource.name == "bytes")
-        assert(resource.openStream().readAllBytes().contentEquals(bytes))
+        assertEquals("bytes", resource.name)
+        assertArrayEquals(bytes, resource.openStream().readAllBytes())
     }
 }

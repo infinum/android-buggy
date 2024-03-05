@@ -26,7 +26,7 @@ class ApplyBuggyResourceProcessorTest {
                             .use { it.readBytes().reversedArray().decodeToString().uppercase() })
                 }
             },
-            applyTo = { originalResources.subList(0, 2) }
+            applyTo = { resource -> resource.toMutableList().subList(0, 2) }
         )
 
         // When
@@ -41,7 +41,9 @@ class ApplyBuggyResourceProcessorTest {
             "!TSET A SI SIHT",
             output[1].openStream().use { it.readBytes().decodeToString() })
         assertEquals("FIRST.TXT", output[1].name)
-        assertEquals("!DLROW ,OLLEH", output[2].openStream().use { it.readBytes().decodeToString() })
+        assertEquals(
+            "!DLROW ,OLLEH",
+            output[2].openStream().use { it.readBytes().decodeToString() })
         assertEquals("SECOND.TXT", output[2].name)
     }
 
@@ -72,9 +74,13 @@ class ApplyBuggyResourceProcessorTest {
 
         // Then
         // processor returns (notApplied + transformed) in that order
-        assertEquals("This is a test!", output[0].openStream().use { it.readBytes().decodeToString() })
+        assertEquals(
+            "This is a test!",
+            output[0].openStream().use { it.readBytes().decodeToString() })
         assertEquals("first.txt", output[0].name)
-        assertEquals("Hello, world!", output[1].openStream().use { it.readBytes().decodeToString() })
+        assertEquals(
+            "Hello, world!",
+            output[1].openStream().use { it.readBytes().decodeToString() })
         assertEquals("second.txt", output[1].name)
         assertEquals("resource3", output[2].openStream().use { it.readBytes().decodeToString() })
         assertEquals("third.txt", output[2].name)
@@ -99,7 +105,7 @@ class ApplyBuggyResourceProcessorTest {
                             .use { it.readBytes().reversedArray().decodeToString().uppercase() })
                 }
             },
-            applyTo = { originalResources }
+            applyTo = { it }
         )
 
         // When
@@ -107,9 +113,13 @@ class ApplyBuggyResourceProcessorTest {
 
         // Then
         // processor returns (notApplied + transformed) in that order
-        assertEquals("!TSET A SI SIHT", output[0].openStream().use { it.readBytes().decodeToString() })
+        assertEquals(
+            "!TSET A SI SIHT",
+            output[0].openStream().use { it.readBytes().decodeToString() })
         assertEquals("FIRST.TXT", output[0].name)
-        assertEquals("!DLROW ,OLLEH", output[1].openStream().use { it.readBytes().decodeToString() })
+        assertEquals(
+            "!DLROW ,OLLEH",
+            output[1].openStream().use { it.readBytes().decodeToString() })
         assertEquals("SECOND.TXT", output[1].name)
         assertEquals("3ECRUOSER", output[2].openStream().use { it.readBytes().decodeToString() })
         assertEquals("THIRD.TXT", output[2].name)
@@ -130,7 +140,7 @@ class ApplyBuggyResourceProcessorTest {
                             .use { it.readBytes().reversedArray().decodeToString().uppercase() })
                 }
             },
-            applyTo = { originalResources }
+            applyTo = { it }
         )
 
         // When
