@@ -14,6 +14,9 @@ class DeviceInfoBuggyResource(
     override val name: String = "device-info.json",
 ) : BuggyResource {
 
+    /**
+     * Opens the resource's stream.
+     */
     override fun openStream(): InputStream = JsonBuggyResource(name).update {
         put("Manufacturer", Build.MANUFACTURER)
         put("Brand", Build.BRAND)
