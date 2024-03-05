@@ -75,9 +75,8 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
 
     implementation(project(":buggy"))
-    //implementation("com.infinum.buggy:buggy:0.1.0")
     implementation(project(":buggy-timber-logger"))
-    //implementation("com.infinum.buggy:buggy-timber:0.1.0")
     implementation(project(":buggy-rolling-file-logger"))
-    //implementation("com.infinum.buggy:buggy-rolling-file-logger:0.1.0")
+
+    //implementation(libs.bundles.buggy)
 }

@@ -12,12 +12,19 @@ junit = "5.10.1"
 timber = "5.0.1"
 navigationFragmentKtx = "2.7.7"
 navigationUiKtx = "2.7.7"
+buggy = "0.1.0"
 
 [bundles]
 test = [
     "junit-jupiter",
     "kotlin-test",
     "turbine"
+]
+buggy = [
+    "buggy",
+    "buggy-android",
+    "buggy-rolling-file-logger",
+    "buggy-timber-logger"
 ]
 
 [plugins]
@@ -39,4 +46,8 @@ junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "jun
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+buggy = { module = "com.infinum.buggy:buggy", version.ref = "buggy" }
+buggy-android = { module = "com.infinum.buggy:buggy-android", version.ref = "buggy" }
+buggy-rolling-file-logger = { module = "com.infinum.buggy:buggy-rolling-file-logger", version.ref = "buggy" }
+buggy-timber-logger = { module = "com.infinum.buggy:buggy-timber-logger", version.ref = "buggy" }
 
