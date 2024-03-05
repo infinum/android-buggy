@@ -74,8 +74,9 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
-    // todo improve to test published versions
     implementation(project(":buggy"))
     implementation(project(":buggy-timber-logger"))
     implementation(project(":buggy-rolling-file-logger"))
+
+    //implementation(libs.bundles.buggy)
 }
