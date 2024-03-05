@@ -6,6 +6,6 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 -keeppackagenames
--keep public class com.infinum.buggy.timber.DelegatorTimberTree {
+-keep public class com.infinum.buggy.* {
   public protected *;
 }

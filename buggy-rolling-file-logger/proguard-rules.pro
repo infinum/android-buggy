@@ -9,6 +9,3 @@
 -keep public class com.infinum.buggy.rolling.* {
   public protected *;
 }
-#-keepclassmembers class com.infinum.buggy.rolling.BuggyLimitedFileFactory {
-#    public static ** Companion;
-#}
