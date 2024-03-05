@@ -1,3 +1,5 @@
+@file:Suppress("ImportOrdering")
+
 package com.infinum.buggy.sample.logs
 
 import android.os.Bundle
@@ -6,13 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.infinum.buggy.sample.R
 import com.infinum.buggy.sample.SampleApplication
 import com.infinum.buggy.sample.databinding.FragmentRollingLoggerBinding
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import timber.log.Timber
+import java.io.File
 
 /**
  * Fragment that used to generate logs and exceptions for testing purposes.
@@ -22,6 +28,10 @@ class RollingLoggerFragment : Fragment() {
 
     private var _binding: FragmentRollingLoggerBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel = RollingLoggerViewModel()
+
+    private val adapter = RollingLoggerAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +47,37 @@ class RollingLoggerFragment : Fragment() {
 
         setupText()
         setupButtons()
+        setupAdapter()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.events.onEach { handleEvent(it) }.launchIn(this)
+            }
+        }
+    }
+
+    private fun setupAdapter() {
+        binding.apply {
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(
+                recyclerView.context,
+                LinearLayoutManager.VERTICAL,
+                false,
+            )
+        }
+    }
+
+    @Suppress("BracesOnWhenStatements")
+    private fun handleEvent(events: RollingLoggerEvents) {
+        when (events) {
+            is RollingLoggerEvents.LogsStarted -> {
+                Toast.makeText(
+                    requireContext(),
+                    "Random logs will be generated in the background",
+                    Toast.LENGTH_SHORT,
+                ).show()
+            }
+        }
     }
 
     @Suppress("KotlinConstantConditions", "MagicNumber")
@@ -59,25 +100,25 @@ class RollingLoggerFragment : Fragment() {
     private fun setupButtons() {
         binding.apply {
             btnGenerateLogs.setOnClickListener {
-                Toast.makeText(
-                    requireContext(),
-                    "Random logs will be generated in the background",
-                    Toast.LENGTH_SHORT,
-                ).show()
-                lifecycleScope.launch {
-                    while (true) {
-                        Timber.d("Debug test")
-                        delay(100)
-                        Timber.e("Error test")
-                        delay(200)
-                    }
-                }
+                viewModel.onGenerateLogsClicked()
             }
 
             binding.btnException.setOnClickListener {
                 throw RuntimeException("This is a test exception")
             }
+
+            btnOpenLatestLog.setOnClickListener {
+                recyclerView.visibility = View.VISIBLE
+                // to avoid UI state management logic
+                val logs = getLogs().maxByOrNull { it.lastModified() }?.readLines()?.reversed()
+                adapter.submitList(logs)
+            }
         }
+    }
+
+    private fun getLogs(): List<File> {
+        val internalLogsPath = File(requireContext().filesDir, "buggy-logs")
+        return internalLogsPath.listFiles()?.toList() ?: emptyList()
     }
 
     override fun onDestroyView() {

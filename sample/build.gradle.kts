@@ -75,6 +75,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
 
     implementation(project(":buggy"))
+    implementation(project(":buggy-android"))
     implementation(project(":buggy-timber-logger"))
     implementation(project(":buggy-rolling-file-logger"))
 
