@@ -12,6 +12,7 @@ class ZipBuggyResourceProcessorTest {
 
     @Test
     fun `process should convert all files to a zip by default`() {
+        // Given
         val resources = listOf(
             TextBuggyResource(name = "entry_1", text = "Hello"),
             TextBuggyResource(name = "entry_2", text = ", "),
@@ -20,8 +21,11 @@ class ZipBuggyResourceProcessorTest {
         )
 
         val processor = ZipBuggyResourceProcessor(name = "zipped")
+
+        // When
         val result = processor.process(resources)
 
+        // Then
         assertEquals(1, result.size)
         assertEquals("zipped", result.first().name)
         assertInstanceOf(ZipBuggyResource::class.java, result.first())
@@ -35,6 +39,7 @@ class ZipBuggyResourceProcessorTest {
 
     @Test
     fun `process should convert only files matched by include filter`() {
+        // Given
         val resources = listOf(
             TextBuggyResource(name = "entry_1", text = "Hello"),
             TextBuggyResource(name = "entry_2", text = ", "),
@@ -47,8 +52,10 @@ class ZipBuggyResourceProcessorTest {
             applyTo = { list -> list.filter { !it.name.contains("4") } }
         )
 
+        // When
         val result = processor.process(resources).toList().sortedBy { it.name }
 
+        // Then
         assertEquals(2, result.size)
         assertEquals("entry_4", result[0].name)
         assertInstanceOf(TextBuggyResource::class.java, result[0])
