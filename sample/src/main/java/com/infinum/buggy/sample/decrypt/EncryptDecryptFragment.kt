@@ -5,7 +5,6 @@ package com.infinum.buggy.sample.decrypt
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -101,7 +100,6 @@ class EncryptDecryptFragment : Fragment() {
                 val encryptedReport =
                     File(requireContext().filesDir, "buggy-reports/encrypted-buggy-report.zip")
                 viewModel.onDecryptReport(encryptedReport, requireContext())
-
             }
         }
     }

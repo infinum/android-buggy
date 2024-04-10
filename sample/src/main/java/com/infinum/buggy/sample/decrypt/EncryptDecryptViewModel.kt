@@ -3,8 +3,6 @@
 package com.infinum.buggy.sample.decrypt
 
 import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.infinum.buggy.Buggy
@@ -12,7 +10,6 @@ import com.infinum.buggy.exporters.ZipBuggyExporter
 import com.infinum.buggy.processors.EncryptionBuggyResourceProcessor
 import com.infinum.buggy.processors.ZipBuggyResourceProcessor
 import com.infinum.buggy.resources.FileBuggyResource
-import kotlin.io.path.createTempFile
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -28,6 +25,7 @@ import javax.crypto.Cipher
 import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
+import kotlin.io.path.createTempFile
 
 /**
  * ViewModel for generating encrypted report and decrypting the same report example, see [EncryptDecryptFragment].
