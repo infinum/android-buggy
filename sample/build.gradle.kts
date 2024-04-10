@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         applicationId = "com.infinum.buggy.sample"
-        minSdk = buildConfig["minSdk"] as Int
+        minSdk = 28 // not using minSdk for lib as we are using additonal functionality
         targetSdk = buildConfig["targetSdk"] as Int
         versionCode = releaseConfig["versionCode"] as Int
         versionName = releaseConfig["version"] as String

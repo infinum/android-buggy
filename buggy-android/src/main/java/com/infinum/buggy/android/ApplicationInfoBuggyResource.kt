@@ -29,7 +29,12 @@ class ApplicationInfoBuggyResource(
         return JsonBuggyResource(name).update {
             put("Package name", context.packageName)
             put("Version name", packageInfo?.versionName.orEmpty())
-            put("Version code", packageInfo?.longVersionCode.toString())
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                put("Version code", packageInfo?.longVersionCode.toString())
+            } else {
+                @Suppress("DEPRECATION")
+                put("Version code", packageInfo?.versionCode.toString())
+            }
             put("First install time", packageInfo?.firstInstallTime)
             put("Last update time", packageInfo?.lastUpdateTime)
             put("Compatible with limit Dp", context.applicationInfo.compatibleWidthLimitDp)
@@ -37,9 +42,13 @@ class ApplicationInfoBuggyResource(
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 put("Compile SDK version", context.applicationInfo.compileSdkVersion)
             }
-            put("Min SDK version", context.applicationInfo.minSdkVersion)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                put("Min SDK version", context.applicationInfo.minSdkVersion)
+            }
             put("Target SDK version", context.applicationInfo.targetSdkVersion)
-            put("Split names", context.applicationInfo.splitNames?.joinToString(", "))
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                put("Split names", context.applicationInfo.splitNames?.joinToString(", "))
+            }
         }.openStream()
     }
 
