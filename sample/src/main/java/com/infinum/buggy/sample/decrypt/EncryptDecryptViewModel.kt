@@ -3,6 +3,8 @@
 package com.infinum.buggy.sample.decrypt
 
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.infinum.buggy.Buggy
@@ -108,6 +110,7 @@ class EncryptDecryptViewModel : ViewModel() {
     }
 
     // Don't pass context to view model in real app this way, this is just for the sake of the example
+    @RequiresApi(Build.VERSION_CODES.O)
     fun onDecryptReport(report: File, context: Context) = viewModelScope.launch {
         try {
             // unzip reports
@@ -135,6 +138,7 @@ class EncryptDecryptViewModel : ViewModel() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun unzipReport(
         report: File,
     ): Pair<File, List<File>> {
@@ -167,6 +171,7 @@ class EncryptDecryptViewModel : ViewModel() {
         return Pair(keyFile, encryptedResources)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @Suppress("MagicNumber")
     private fun decryptKey(
         keyFile: File,
@@ -183,6 +188,7 @@ class EncryptDecryptViewModel : ViewModel() {
         return IvParameterSpec(iv) to SecretKeySpec(key, "AES")
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun decryptResources(
         encryptedResources: List<File>,
         key: SecretKey,

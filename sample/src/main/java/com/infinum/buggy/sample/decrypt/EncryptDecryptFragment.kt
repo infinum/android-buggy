@@ -5,6 +5,7 @@ package com.infinum.buggy.sample.decrypt
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -96,10 +97,18 @@ class EncryptDecryptFragment : Fragment() {
             }
 
             btnDecryptReport.setOnClickListener {
-                // assumption here is that encrypted report exists at this path
-                val encryptedReport =
-                    File(requireContext().filesDir, "buggy-reports/encrypted-buggy-report.zip")
-                viewModel.onDecryptReport(encryptedReport, requireContext())
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    // assumption here is that encrypted report exists at this path
+                    val encryptedReport =
+                        File(requireContext().filesDir, "buggy-reports/encrypted-buggy-report.zip")
+                    viewModel.onDecryptReport(encryptedReport, requireContext())
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Decryption is supported from Android 8",
+                        Toast.LENGTH_LONG,
+                    ).show()
+                }
             }
         }
     }
