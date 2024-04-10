@@ -31,6 +31,8 @@ class ApplicationInfoBuggyResource(
             put("Version name", packageInfo?.versionName.orEmpty())
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 put("Version code", packageInfo?.longVersionCode.toString())
+            }else{
+                put("Version code", packageInfo?.versionCode.toString())
             }
             put("First install time", packageInfo?.firstInstallTime)
             put("Last update time", packageInfo?.lastUpdateTime)
