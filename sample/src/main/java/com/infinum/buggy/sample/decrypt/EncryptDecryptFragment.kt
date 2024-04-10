@@ -97,18 +97,11 @@ class EncryptDecryptFragment : Fragment() {
             }
 
             btnDecryptReport.setOnClickListener {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    // assumption here is that encrypted report exists at this path
-                    val encryptedReport =
-                        File(requireContext().filesDir, "buggy-reports/encrypted-buggy-report.zip")
-                    viewModel.onDecryptReport(encryptedReport, requireContext())
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Decryption is supported from Android 8",
-                        Toast.LENGTH_LONG,
-                    ).show()
-                }
+                // assumption here is that encrypted report exists at this path
+                val encryptedReport =
+                    File(requireContext().filesDir, "buggy-reports/encrypted-buggy-report.zip")
+                viewModel.onDecryptReport(encryptedReport, requireContext())
+
             }
         }
     }
