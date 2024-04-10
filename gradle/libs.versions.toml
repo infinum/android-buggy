@@ -49,5 +49,5 @@ androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation
 buggy = { module = "com.infinum.buggy:buggy", version.ref = "buggy" }
 buggy-android = { module = "com.infinum.buggy:buggy-android", version.ref = "buggy" }
 buggy-rolling-file-logger = { module = "com.infinum.buggy:buggy-rolling-file-logger", version.ref = "buggy" }
-buggy-timber-logger = { module = "com.infinum.buggy:buggy-timber-logger", version.ref = "buggy" }
+buggy-timber-logger = { module = "com.infinum.buggy:buggy-timber", version.ref = "buggy" }
 
