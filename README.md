@@ -162,7 +162,7 @@ Or by running command with flag, ex: `./gradlew publishReleasePublicationToSonat
 
 ## Requirements
 
-Minimum supported Android version: API level 28 (Android 9.0)
+Minimum supported Android version: API level 22 (Android 5.1)
 
 ## Contributing
 
