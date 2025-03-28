@@ -6,6 +6,8 @@
 
 // Library logo (left wrap with title) //
 
+## Description
+
 An Android library for exporting simple resources (usually logs and debug data). It allows
 you to add, remove and process resources before an export.
 
@@ -18,6 +20,16 @@ The project is organized in the following modules:
 - `buggy-rolling-file-logger` - Module for writing logs to files with a rolling strategy (once
   maximum total capacity is exceeded oldest files get deleted).
 - `buggy-timber` - Module that provides a Timber tree in which custom loggers can be injected.
+
+
+## Table of contents
+
+* [Getting started](#getting-started)
+* [Usage](#usage)
+* [Requirements](#requirements)
+* [Contributing](#contributing)
+* [License](#license)
+* [Credits](#credits)
 
 ## Getting started
 
@@ -78,7 +90,7 @@ implementation("com.infinum.buggy:buggy-timber:0.1.0")
 
 Don't forget to sync your project.
 
-### Usage
+## Usage
 
 To use the library, you have to initialize it with Builder. You can add resources (for example log
 files) and processors (for example `EncryptionBuggyResourceProcessor`) to the builder and then build
@@ -154,32 +166,36 @@ Timber.plant(
 )
 ```
 
-## Publishing
-
-When publishing a new version of the library, disable Gradle parallel execution to avoid the issue of artefacts appearing in multiple repositories
-You can disable it in `gradle.properties`
-Or by running command with flag, ex: `./gradlew publishReleasePublicationToSonatypeMavenCentralRepository --no-parallel`
-
 ## Requirements
 
 Minimum supported Android version: API level 22 (Android 5.1)
 
 ## Contributing
 
-Feedback and code contributions are very much welcome. Just make a pull request with a short
-description of your changes. By making contributions to this project you give permission for your
-code to be used under the same [license](LICENSE). For easier developing a [sample app](sample) with proper implementations is provided.
+We believe that the community can help us improve and build better a product.
+Please refer to our [contributing guide](CONTRIBUTING.md) to learn about the types of contributions we accept and the process for submitting them.
+For easier developing a [sample app](sample) with proper implementations is provided.
+
+To ensure that our community remains respectful and professional, we defined a [code of conduct](CODE_OF_CONDUCT.md) that we expect all contributors to follow.
+
+We appreciate your interest and look forward to your contributions.
+
+### Publishing
+
+When publishing a new version of the library, disable Gradle parallel execution to avoid the issue of artefacts appearing in multiple repositories
+You can disable it in `gradle.properties`
+Or by running command with flag, ex: `./gradlew publishReleasePublicationToSonatypeMavenCentralRepository --no-parallel`
 
 ## License
 
-```
-Copyright 2021 Infinum
+```text
+Copyright 2025 Infinum
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-   http://www.apache.org/licenses/LICENSE-2.0
+    http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -190,13 +206,13 @@ limitations under the License.
 
 ## Credits
 
-Maintained and sponsored by [Infinum](http://www.infinum.com).
+Maintained and sponsored by [Infinum](https://infinum.com).
 
-<p align="center">
-  <a href='https://infinum.com'>
+<div align="center">
+    <a href='https://infinum.com'>
     <picture>
         <source srcset="https://assets.infinum.com/brand/logo/static/white.svg" media="(prefers-color-scheme: dark)">
         <img src="https://assets.infinum.com/brand/logo/static/default.svg">
     </picture>
-  </a>
-</p>
+    </a>
+</div>
