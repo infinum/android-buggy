@@ -1,10 +1,8 @@
 ![Download](https://img.shields.io/maven-central/v/com.infinum.buggy/buggy)  [![Build Status](https://app.bitrise.io/app/2f579e1f-5eb6-4bae-974c-3af8b0ff2a4c/status.svg?token=YSdaK3xxLACRNQCFFbtuqA&branch=main)](https://app.bitrise.io/app/2f579e1f-5eb6-4bae-974c-3af8b0ff2a4c) 
 
-### <img align="left" src="logo.svg" width="48">
+### <img align="left" src="resources/logo.svg" width="48">
 
 # Android Buggy
-
-// Library logo (left wrap with title) //
 
 ## Description
 
