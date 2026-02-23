@@ -36,6 +36,10 @@ android {
 
     namespace = "com.infinum.buggy.android"
 
+    publishing {
+        singleVariant("release") {}
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
