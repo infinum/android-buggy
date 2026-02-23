@@ -10,9 +10,9 @@ import java.util.concurrent.Executors
  * Logger that writes into files and limits the size of individual log files.
  * When the size of the log file exceeds the maximum size, new file is created with help from [fileFactory] and [BuggyFileWriter].
  *
- * @property maxIndividualFileSizeBytes Maximum size of individual log file in bytes.
- * @property onFileOpened Callback that is called when new log file is opened.
- * @property fileFactory Callback that creates new log file. Argument is the wanted size of the file.
+ * @param maxIndividualFileSizeBytes Maximum size of individual log file in bytes.
+ * @param onFileOpened Callback that is called when new log file is opened.
+ * @param fileFactory Callback that creates new log file. Argument is the wanted size of the file.
  */
 class BuggyFileRollingLogger(
     private val maxIndividualFileSizeBytes: Long = DEFAULT_MAX_INDIVIDUAL_FILE_SIZE_BYTES,

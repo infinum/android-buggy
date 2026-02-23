@@ -5,7 +5,7 @@ import java.io.OutputStream
 
 /**
  * An output stream that counts the number of bytes written to it.
- * @property delegate The delegate output stream.
+ * @param delegate The delegate output stream.
  * @param initialSize The initial size of the stream.
  */
 internal class CountingOutputStream(

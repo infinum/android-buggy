@@ -18,7 +18,7 @@ private val DATE_TIME_FORMATTER = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale
  * Files are stored in the application's internal storage.
  *
  * @param context Application context.
- * @property maxTotalFileSizeBytes Maximum size of all log files in bytes.
+ * @param maxTotalFileSizeBytes Maximum size of all log files in bytes.
  * @param directoryName Name of the directory where log files are stored.
  * @property logFileNameFactory Callback that creates new log file name.
  */
