@@ -14,9 +14,9 @@ import javax.crypto.Cipher
  * The [resourceCipher] is used to encrypt the resources.
  * [keyCipher] should already be initialized for encryption.
  *
- * @property keyCipher Cipher to be used for encrypting the key.
- * @property resourceCipher Cipher to be used for encrypting the resources.
- * @property keyName Name of the resource that will contain the encrypted key.
+ * @param keyCipher Cipher to be used for encrypting the key.
+ * @param resourceCipher Cipher to be used for encrypting the resources.
+ * @param keyName Name of the resource that will contain the encrypted key.
  */
 class EncryptionBuggyResourceProcessor(
     private val keyCipher: Cipher,

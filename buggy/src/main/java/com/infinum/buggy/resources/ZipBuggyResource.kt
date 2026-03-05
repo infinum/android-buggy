@@ -12,7 +12,7 @@ import kotlin.io.path.outputStream
  * Zips multiple [BuggyResource]s into a single [BuggyResource].
  *
  * @property name Name of the zipped resource.
- * @property included Collection of [BuggyResource]s to be zipped.
+ * @param included Collection of [BuggyResource]s to be zipped.
  */
 class ZipBuggyResource(
     override val name: String,

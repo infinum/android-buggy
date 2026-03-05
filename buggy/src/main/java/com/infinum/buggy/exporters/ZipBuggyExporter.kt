@@ -9,8 +9,8 @@ import java.util.zip.ZipOutputStream
 
 /**
  * Exporter that exports the resources to a zip file.
- * @property file the file to be used for exporting report.
- * @property bufferSize the buffer size to be used when exporting the resources.
+ * @param file the file to be used for exporting report.
+ * @param bufferSize the buffer size to be used when exporting the resources.
  */
 class ZipBuggyExporter(
     private val file: File,

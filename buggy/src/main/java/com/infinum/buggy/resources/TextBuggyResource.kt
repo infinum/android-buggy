@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets
  *
  * @property name Name of the resource.
  * @property text Text content of the resource.
- * @property charset Charset of the text content.
+ * @param charset Charset of the text content.
  */
 class TextBuggyResource(
     override val name: String,

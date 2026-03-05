@@ -8,8 +8,8 @@ import com.infinum.buggy.BuggyResourceProcessor
  * This is useful when you want to apply a processor to only some of the resources, and leave the rest as is.
  * Use the [applyTo] to specify which resources should be processed.
  *
- * @property delegate the processor to apply to the subset of resources
- * @property applyTo a function that returns the subset of resources to apply the processor to
+ * @param delegate the processor to apply to the subset of resources
+ * @param applyTo a function that returns the subset of resources to apply the processor to
  */
 class ApplyBuggyResourceProcessor(
     private val delegate: BuggyResourceProcessor,

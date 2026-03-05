@@ -8,9 +8,9 @@ import java.nio.charset.StandardCharsets
 
 /**
  * Writes logs to a file.
- * @property file File to write logs to.
- * @property formatter Formatter to format logs.
- * @property onFileOpened Callback to be called when file is opened. Useful for writing headers.
+ * @param file File to write logs to.
+ * @param formatter Formatter to format logs.
+ * @param onFileOpened Callback to be called when file is opened. Useful for writing headers.
  */
 internal class BuggyFileWriter(
     private val file: File,

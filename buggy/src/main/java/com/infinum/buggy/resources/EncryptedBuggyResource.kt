@@ -8,8 +8,8 @@ import javax.crypto.CipherInputStream
 /**
  * Represents a [BuggyResource] that is backed by an encrypted resource.
  *
- * @property delegate Original resource to be encrypted.
- * @property cipher Cipher to be used for encryption.
+ * @param delegate Original resource to be encrypted.
+ * @param cipher Cipher to be used for encryption.
  */
 class EncryptedBuggyResource(
     private val delegate: BuggyResource,

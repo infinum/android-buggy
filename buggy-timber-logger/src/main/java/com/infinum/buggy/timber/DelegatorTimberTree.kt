@@ -12,7 +12,7 @@ import timber.log.Timber
  * )
  * ```
  *
- * @property logger Function that logging will be delegated to when log() is called.
+ * @param logger Function that logging will be delegated to when log() is called.
  */
 class DelegatorTimberTree(
     private val logger: (priority: Int, tag: String?, message: String, t: Throwable?) -> Unit,

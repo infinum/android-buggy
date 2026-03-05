@@ -7,7 +7,7 @@ import java.io.InputStream
 
 /**
  * Represents a [BuggyResource] that is backed by a [File].
- *  @property file File to be represented as a resource.
+ *  @param file File to be represented as a resource.
  *  @property name Name of the resource.
  *  @throws IOException if the file cannot be opened.
  *

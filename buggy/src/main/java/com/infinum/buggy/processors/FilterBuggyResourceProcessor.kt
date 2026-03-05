@@ -9,7 +9,7 @@ import com.infinum.buggy.BuggyResourceProcessor
  * By default, all resources are included.
  * All resources that are not returned by the filter are excluded from the bug report.
  *
- * @property includeFilter a function that returns the resources to include in the bug report
+ * @param includeFilter a function that returns the resources to include in the bug report
  */
 class FilterBuggyResourceProcessor(
     private val includeFilter: (Collection<BuggyResource>) -> Collection<BuggyResource> = { it },
