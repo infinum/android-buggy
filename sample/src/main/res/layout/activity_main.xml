@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context="com.infinum.buggy.sample.MainActivity">
+    tools:context="com.infinum.buggy.sample.MainActivity"
+    android:fitsSystemWindows="true">
 
     <Button
         android:id="@+id/reportButton"
