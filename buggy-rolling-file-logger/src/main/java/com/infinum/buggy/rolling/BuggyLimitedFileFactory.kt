@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-private val DATE_TIME_FORMATTER = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ROOT)
+private val DATE_TIME_FORMATTER = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.ROOT)
 
 /**
  * Factory for creating log files with a limit on the total size of the files.
