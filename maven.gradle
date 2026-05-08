@@ -26,7 +26,7 @@ if (propsFile.exists()) {
 ext.sonatype = [
 
         // If going with Option 3 the properties file will not exist and will fallback to the specified hardcoded value
-        url     : properties["sonatype.url"] ?: "https://oss.sonatype.org/service/local/staging/deploy/maven2",
+        url     : properties["sonatype.url"] ?: "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2",
 
                   // Option 1
         username: findProperty("sonatypeUsername")?.toString()
