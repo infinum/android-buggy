@@ -1,6 +1,7 @@
 package com.infinum.buggy.sample.logs
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.infinum.buggy.sample.databinding.ActivityRollingLoggerBinding
 
@@ -9,7 +10,7 @@ class RollingLoggerActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityRollingLoggerBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        enableEdgeToEdge()
         viewBinding = ActivityRollingLoggerBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
     }

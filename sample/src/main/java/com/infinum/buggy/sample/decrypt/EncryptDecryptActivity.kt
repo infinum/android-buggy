@@ -1,6 +1,7 @@
 package com.infinum.buggy.sample.decrypt
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.infinum.buggy.sample.databinding.ActivityEncryptDecryptBinding
 
@@ -10,7 +11,7 @@ class EncryptDecryptActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityEncryptDecryptBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        enableEdgeToEdge()
         viewBinding = ActivityEncryptDecryptBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
     }
