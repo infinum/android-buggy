@@ -14,7 +14,7 @@ task sourcesJar(type: Jar) {
         || project.plugins.hasPlugin('com.android.library')) {
         from android.sourceSets.main.java.srcDirs
     } else {
-        from sourceSets.main.allJava
+        from sourceSets.main.allSource
     }
 }
 
