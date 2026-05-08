@@ -12,7 +12,7 @@ junit = "6.0.3"
 timber = "5.0.1"
 navigationFragmentKtx = "2.9.8"
 navigationUiKtx = "2.9.8"
-buggy = "0.1.0"
+buggy = "0.1.1"
 
 [bundles]
 test = [

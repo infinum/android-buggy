@@ -59,13 +59,13 @@ Then, you can include the library in your module's `build.gradle` or `build.grad
 **Groovy**
 
 ```groovy
-implementation "com.infinum.buggy:buggy:0.1.0"
+implementation "com.infinum.buggy:buggy:0.1.1"
 ```
 
 **KotlinDSL**
 
 ```kotlin
-implementation("com.infinum.buggy:buggy:0.1.0")
+implementation("com.infinum.buggy:buggy:0.1.1")
 ```
 
 If you want to use other modules, you can include them in the same way:
@@ -73,17 +73,17 @@ If you want to use other modules, you can include them in the same way:
 **Groovy**
 
 ```groovy
-implementation "com.infinum.buggy:buggy-android:0.1.0"
-implementation "com.infinum.buggy:buggy-rolling-file-logger:0.1.0"
-implementation "com.infinum.buggy:buggy-timber:0.1.0"
+implementation "com.infinum.buggy:buggy-android:0.1.1"
+implementation "com.infinum.buggy:buggy-rolling-file-logger:0.1.1"
+implementation "com.infinum.buggy:buggy-timber:0.1.1"
 ```
 
 **KotlinDSL**
 
 ```kotlin
-implementation("com.infinum.buggy:buggy-android:0.1.0")
-implementation("com.infinum.buggy:buggy-rolling-file-logger:0.1.0")
-implementation("com.infinum.buggy:buggy-timber:0.1.0")
+implementation("com.infinum.buggy:buggy-android:0.1.1")
+implementation("com.infinum.buggy:buggy-rolling-file-logger:0.1.1")
+implementation("com.infinum.buggy:buggy-timber:0.1.1")
 ```
 
 Don't forget to sync your project.
