@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  pull_request:
+  # Runs on `main` save the Gradle cache that pull request runs restore.
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: CI
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      # Must match the Gradle daemon JDK in `gradle/gradle-daemon-jvm.properties`.
+      - name: Set up JDK
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Run Android Lint
+        run: ./gradlew lintDebug lintRelease
+
+      - name: Run Detekt
+        run: ./gradlew detekt --stacktrace
+
+      # `buggy` is a plain JVM module, so its tests run with `:buggy:test`.
+      - name: Run unit tests
+        run: ./gradlew testDebugUnitTest :buggy:test
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-results-${{ github.job }}
+          path: |
+            **/build/reports/
+            **/build/test-results/
+          retention-days: 7
