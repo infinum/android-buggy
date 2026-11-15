@@ -1,8 +1,8 @@
 [versions]
 appcompat = "1.8.0"
-androidGradlePlugin = "9.5.0"
+androidGradlePlugin = "9.5.1"
 detekt = "1.23.8"
-dokka = "2.2.0"
+dokka = "2.3.0"
 kotlin = "2.4.21"
 kotlinxCoroutinesAndroid = "1.11.0"
 lifecycleLivedataKtx = "2.11.0"
